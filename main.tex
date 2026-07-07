@@ -1,0 +1,201 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% IIT Sample THESIS File,   Version 3, Updated by Babak Hamidian on 11/18/2003
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% File: sample3.tex                                   %
+% IIT Sample LaTeX File                               %
+% by Ozlem Kalinli on 05/30/2003                      %
+% Revised by Babak Hamidian on 11/18/2003             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                     %
+% This is a sample thesis document created using      %
+% iitthesis.cls style file. The PDF output is also    %
+% available for your reference. In this file, it has  %
+% been illustrated how to make table of contents,     %
+% list of tables, list of figures, list of symbols,   %
+% bibliography, equations, enumerations, etc.         %
+% You can find detailed instructions                  %
+% for using the style file in Help.doc,               %
+% TableHelp.doc, FigureHelp.doc, and                  %
+% Bibliography.doc files.                             %
+%                                                     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Note: The texts that are used in this sample3.tex   %
+% file are irrelevant. They are just used to show     %
+% you the style created by iitthesis style file.      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Updates added by Jonathan Harmon, effective Dec. 15. 2021. 
+
+\documentclass[12pt,a4paper]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[numbers]{natbib}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\newtheorem{proposition}{Proposition}[chapter]
+\newtheorem{assumption}{Assumption}[chapter]
+\usepgfplotslibrary{groupplots}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+\pgfplotsset{compat=1.18}
+
+% Compatibility definitions for compiling this draft without iitthesis.cls.
+\makeatletter
+\newcommand{\degree}[1]{\gdef\@degree{#1}}
+\newcommand{\dept}[1]{\gdef\@dept{#1}}
+\newif\ifcopyrightnotice
+\newif\ifcoadvisor
+\newcommand{\prelimpages}{\pagenumbering{roman}}
+\newcommand{\textpages}{\clearpage\pagenumbering{arabic}}
+\newenvironment{acknowledgment}{\chapter*{Acknowledgment}\addcontentsline{toc}{chapter}{Acknowledgment}}{\clearpage}
+\newenvironment{authorship}{\chapter*{Authorship Statement}\addcontentsline{toc}{chapter}{Authorship Statement}}{\clearpage}
+\makeatother
+
+% Plot styles used in Chapter 3 figures
+\pgfplotsset{
+  myaxis/.style={
+    width=0.43\textwidth,
+    height=0.28\textwidth,
+    grid=major,
+    tick label style={font=\small},
+    label style={font=\small},
+    title style={font=\small}
+  }
+}
+\tikzset{
+  vn/.style={blue, thick},
+  ms/.style={red, thick, dashed},
+  rs/.style={green!60!black, thick, dashdotted},
+  thresh/.style={black!60, dotted, thick},
+  ineq/.style={orange!80!black, thick}
+}
+
+\onehalfspacing
+
+\begin{document}
+
+%%% Declarations for Title Page %%%
+\title{CSR-Driven Supply Chain Coordination in Manufacturing--Retail Networks:\\[4pt]
+Strategic Network Design and Cooperative Cost Sharing}
+\author{Qian Cao}
+\degree{PhD of Management Science}
+\dept{School of Business}
+\date{April 2026}
+\copyrightnoticetrue      % create copyright page or not
+\coadvisortrue           % add co-advisor. activate it by removing % symbol to add co-advisor
+\maketitle                % create title and copyright pages
+
+
+\prelimpages         % Settings of preliminary pages are done with \prelimpages command
+
+
+%%%  Acknowledgement %%%
+\begin{acknowledgment}     % acknowledgement environment, this is optional
+%\vspace{10pt}	%These two lines will single space the ACK if needed
+%\ssp
+\par  This dissertation could not have been written without Dr. Sharma
+who not only served as my supervisor but also encouraged and
+challenged me throughout my academic program. She guided me through the
+dissertation process, never accepting less than my best efforts.\\ \\
+
+% or \input{acknowledgement.tex} % you need a separate acknowledgement.tex file to include it.
+
+\end{acknowledgment}
+
+\begin{authorship}
+	\par I, Qian Cao, attest that the work in this thesis is substantially my own.	
+	
+%	In accordance with the disciplinary norm of [Management Science] (see IIT Faculty Handbook, Appendix S), the following collaborations occurred in the thesis: 
+	
+	
+	%Be sure to include the parenthetical reference to the Faculty Handbook. The Handbook can be found here: https://web.iit.edu/general-counsel/faculty-handbook. Appendix S contains references for "disciplinary norms" of authorship by discipline.	
+\end{authorship}
+
+% Table of Contents
+\tableofcontents
+\clearpage
+
+% List of Tables
+\listoftables
+
+\clearpage
+
+%List of Figures
+\listoffigures
+
+\clearpage
+
+% %List of Symbols(optional)
+% \bigskip
+% \listofsymbols
+
+%  \SymbolDefinition{$\beta$}{probability of non-detecting bad data}
+%  \SymbolDefinition{$\delta$}{Transition Coefficient Constant for the Design \\ of Linear-Phase FIR Filters}
+%  \SymbolDefinition{$\zeta$}{Reflection Coefficient Parameter}
+%  \SymbolDefinition{$\Phi \Psi \Sigma \left(D_t\right)_{t \in \{1,\ldots,T\}}$}{Total portfolio P\&L process}
+
+
+ \clearpage
+
+
+
+%%% Abstract %%%
+\begin{abstract}           % abstract environment, this is optional
+\par
+This dissertation examines how corporate social responsibility (CSR) commitments can be translated into economically viable supply-chain coordination, investment, and cost-sharing mechanisms. Rather than treating CSR as only an ethical statement or external reporting practice, the dissertation studies CSR as an operational responsibility that must be implemented through pricing decisions, recycling-maturity investment, take-back obligations, reverse-logistics design, and fair allocation of shared costs. EV battery recycling is used as the applied case context because it makes these CSR implementation challenges concrete through extended producer responsibility compliance, used-battery collection, recycling performance, consumer trust, and multi-party cost responsibility.
+
+The dissertation develops two studies organized around four model blocks. Study 1 analyzes CSR-driven vertical coordination in a bilateral manufacturer-retailer channel. Its first model block compares operational outcomes under Vertical Nash, Manufacturer Stackelberg, Retailer Stackelberg, and Integrated regimes when market demand depends on CSR-driven recycling maturity. Its second model block introduces a stage-0 meta-game in which firms endogenously choose between coordination and leadership competition before operational decisions are made. Study 2 extends the CSR implementation problem to a multi-retailer reverse-logistics setting. Its third model block formulates a mixed-integer linear programming model for EV battery collection, transportation, processing, and recycling-network design. Its fourth model block applies cooperative game theory and Shapley value allocation to distribute shared reverse-logistics costs among participating retailers.
+
+Together, the two studies show that CSR implementation in supply chains requires both strategic coordination and fair allocation of shared operational costs. The dissertation contributes a CSR-first modeling framework that links vertical channel incentives, endogenous regime choice, reverse-logistics network design, and cooperative cost sharing in the context of EV battery recycling.
+
+
+\end{abstract}
+%\clearpage
+
+
+
+
+\textpages     % Settings of text-pages are done with \textpages command
+
+\include{chp1_introduction_v1.2}
+\include{chp2_literature_review_v1.2}
+\include{chp3_models_manufacturer_retailer_dynamics_in_ev_battery_recycling_v1.3}
+\include{chp4_models_multi_retailer_ev_battery_recycling_network_with_shapley_cost_sharing_v1.3}
+\include{chp5_conclusion_v1.2}
+
+
+\clearpage
+
+
+%
+% APPENDIX
+%
+
+% Do the settings of appendices with \appendix command
+\appendix
+\include{appendix_chapter3_detailed_proofs_v1.2}
+
+%
+% BIBLIOGRAPHY
+%
+% you have two options: 1) create bibliography manually,
+% 2) create bibliography automatically. See BibliographyHelp.pdf file for details.
+
+
+%\bibliographystyle{plain}
+%\bibliographystyle{apacite}
+\bibliographystyle{ieeetr} %this package will format in IEEE style.
+\bibliography{Bib}
+
+\end{document}  % end of document

@@ -1,0 +1,780 @@
+\chapter{Appendix to Chapter 3: Detailed Proofs}
+\label{app:ch3_proofs}
+
+This appendix provides the algebraic details underlying the main results in
+Chapter~\ref{chap:model1}. To keep the main chapter focused on economic
+interpretation, the text there reports the closed-form equilibria and the main
+comparative insights. Here we show the intermediate steps used to obtain those
+results.
+
+\section{Useful Re-parameterization and Preliminary Observations}
+\label{app:preliminaries}
+
+For the decentralized games it is convenient to work with the retailer markup $m = p-w,$ so that the retail price can be written as $ p=w+m.$
+Substituting into the demand system $Q(p,s)$ from given in  \ref{eq:demand} 
+% \begin{equation}
+%  Q(p,s)=\bar Q-\alpha p+\beta s,
+% \end{equation}
+yields  $ Q(w,m,s)=\bar Q-\alpha(w+m)+\beta s.$
+% \begin{equation*}
+%  Q(w,m,s)=\bar Q-\alpha(w+m)+\beta s.
+%  \label{eq:app_demand_markup}
+% \end{equation*}
+
+The manufacturer profit becomes
+\begin{equation}
+ \Pi_M(w,m,s)=w\bigl(\bar Q-\alpha(w+m)+\beta s\bigr),
+ \label{eq:app_piM}
+\end{equation}
+while the retailer profit becomes
+\begin{equation}
+ \Pi_R(w,m,s)=m\bigl(\bar Q-\alpha(w+m)+\beta s\bigr)-\frac{1}{2}\gamma s^2.
+ \label{eq:app_piR}
+\end{equation}
+
+The quadratic structure makes the second-order conditions transparent, but the
+conditions are regime-specific. In VN and in the retailer follower problem under
+MS, the retailer's Hessian in $(m,s)$ is
+\begin{equation}
+ H_R^{VN/MS}=
+ \begin{pmatrix}
+ -2\alpha & \beta\\
+ \beta & -\gamma
+ \end{pmatrix},
+\end{equation}
+which is negative definite if and only if
+\begin{equation}
+ \Delta_2:=2\alpha\gamma-\beta^2>0.
+\end{equation}
+The integrated benchmark has the same Hessian form in $(p,s)$ and therefore
+uses the same condition. By contrast, after the manufacturer's response is
+substituted into the RS game, the retailer leader's reduced problem has Hessian
+\begin{equation}
+ H_R^{RS}=
+ \begin{pmatrix}
+ -\alpha & \beta/2\\
+ \beta/2 & -\gamma
+ \end{pmatrix},
+\end{equation}
+which is negative definite if and only if
+\begin{equation}
+ \Delta_4:=4\alpha\gamma-\beta^2>0.
+\end{equation}
+Thus denominator positivity and second-order sufficiency are distinct. For
+example, $\Delta_3>0$ makes the VN closed-form denominator positive, but the
+retailer problem still requires $\Delta_2>0$ for the stationary point to be a
+maximum. The cross-regime comparisons in Chapter~\ref{chap:model1} therefore
+maintain $\Delta_2>0$, while RS is also valid as a standalone game on the wider
+domain $\Delta_4>0$.
+
+\section{Proof of Proposition~\ref{prop:vn}: Vertical Nash Equilibrium}
+\label{app:proof_vn}
+
+Under Vertical Nash, the manufacturer chooses $w$ and the retailer chooses
+$(m,s)$ simultaneously. Using \eqref{eq:app_piM}--\eqref{eq:app_piR}, the
+players solve
+\begin{equation}
+ \max_w \Pi_M(w,m,s),
+ \qquad
+ \max_{m,s}\Pi_R(w,m,s).
+\end{equation}
+
+\subsection{Step 1: Retailer first-order conditions}
+
+Differentiating \eqref{eq:app_piR} with respect to $m$ and $s$ gives
+\begin{align}
+ \frac{\partial \Pi_R}{\partial m}
+ &= \bar Q-\alpha(w+2m)+\beta s = 0,
+ \label{eq:app_vn_foc_m}\\
+ \frac{\partial \Pi_R}{\partial s}
+ &= \beta m-\gamma s = 0.
+ \label{eq:app_vn_foc_s}
+\end{align}
+Equation~\eqref{eq:app_vn_foc_s} implies the retailer's recycling maturity is
+proportional to its markup:
+\begin{equation}
+ s=\frac{\beta}{\gamma}m.
+ \label{eq:app_vn_s_of_m}
+\end{equation}
+
+\subsection{Step 2: Manufacturer first-order condition}
+
+Differentiating \eqref{eq:app_piM} with respect to $w$ yields
+\begin{equation}
+ \frac{\partial \Pi_M}{\partial w}
+ = \bar Q-\alpha(2w+m)+\beta s = 0.
+ \label{eq:app_vn_foc_w}
+\end{equation}
+
+\subsection{Step 3: Solve the system}
+
+Subtract \eqref{eq:app_vn_foc_w} from \eqref{eq:app_vn_foc_m}:
+\begin{equation}
+\bigl[\bar Q-\alpha(w+2m)+\beta s\bigr]-\bigl[\bar Q-\alpha(2w+m)+\beta s\bigr]=0,
+\end{equation}
+which simplifies to
+\begin{equation}
+ \alpha(w-m)=0.
+\end{equation}
+Hence
+\begin{equation}
+ w^{VN}=m^{VN}.
+ \label{eq:app_vn_equal_margins}
+\end{equation}
+
+Now substitute \eqref{eq:app_vn_equal_margins} and
+\eqref{eq:app_vn_s_of_m} into \eqref{eq:app_vn_foc_w}:
+\begin{equation}
+ \bar Q-\alpha(3w)+\beta\left(\frac{\beta}{\gamma}w\right)=0.
+\end{equation}
+Multiplying by $\gamma$ gives
+\begin{equation}
+ \bar Q\gamma-(3\alpha\gamma-\beta^2)w=0,
+\end{equation}
+so
+\begin{equation}
+ w^{VN}=\frac{\bar Q\gamma}{3\alpha\gamma-\beta^2}.
+\end{equation}
+From \eqref{eq:app_vn_equal_margins},
+\begin{equation}
+ m^{VN}=\frac{\bar Q\gamma}{3\alpha\gamma-\beta^2}.
+\end{equation}
+Using \eqref{eq:app_vn_s_of_m},
+\begin{equation}
+ s^{VN}=\frac{\bar Q\beta}{3\alpha\gamma-\beta^2}.
+\end{equation}
+Since $p=w+m$,
+\begin{equation}
+ p^{VN}=\frac{2\bar Q\gamma}{3\alpha\gamma-\beta^2}.
+\end{equation}
+
+\subsection{Step 4: Demand and profits}
+
+Substitute the equilibrium values into demand:
+\begin{align}
+ Q^{VN}
+ &= \bar Q-\alpha p^{VN}+\beta s^{VN} \\
+ &= \bar Q-\alpha\left(\frac{2\bar Q\gamma}{3\alpha\gamma-\beta^2}\right)
+ +\beta\left(\frac{\bar Q\beta}{3\alpha\gamma-\beta^2}\right) \\
+ &= \frac{\alpha\gamma\bar Q}{3\alpha\gamma-\beta^2}.
+\end{align}
+Therefore,
+\begin{equation}
+ \Pi_M^{VN}=w^{VN}Q^{VN}
+ =\frac{\alpha\bar Q^2\gamma^2}{(3\alpha\gamma-\beta^2)^2},
+\end{equation}
+and
+\begin{align}
+ \Pi_R^{VN}
+ &=m^{VN}Q^{VN}-\frac{1}{2}\gamma(s^{VN})^2 \\
+ &=\frac{\alpha\bar Q^2\gamma^2}{(3\alpha\gamma-\beta^2)^2}
+ -\frac{1}{2}\gamma\left(\frac{\bar Q\beta}{3\alpha\gamma-\beta^2}\right)^2 \\
+ &=\frac{\gamma\bar Q^2(2\alpha\gamma-\beta^2)}{2(3\alpha\gamma-\beta^2)^2}.
+\end{align}
+This proves Proposition~\ref{prop:vn}.
+
+\section{Proof of Proposition~\ref{prop:ms}: Manufacturer Stackelberg Equilibrium}
+\label{app:proof_ms}
+
+Under MS, the manufacturer chooses $w$ first, and the retailer then solves for
+its best response in $(m,s)$.
+
+\subsection{Step 1: Retailer best response given $w$}
+
+Given $w$, the retailer solves
+\begin{equation}
+ \max_{m,s}
+ \left\{m\bigl(\bar Q-\alpha(w+m)+\beta s\bigr)-\frac{1}{2}\gamma s^2\right\}.
+\end{equation}
+The first-order conditions are
+\begin{align}
+ \bar Q-\alpha w-2\alpha m+\beta s &=0,
+ \label{eq:app_ms_foc_m}\\
+ \beta m-\gamma s &=0.
+ \label{eq:app_ms_foc_s}
+\end{align}
+From \eqref{eq:app_ms_foc_s},
+\begin{equation}
+ s=\frac{\beta}{\gamma}m.
+ \label{eq:app_ms_s_of_m}
+\end{equation}
+Substituting into \eqref{eq:app_ms_foc_m} gives
+\begin{equation}
+ \bar Q-\alpha w-2\alpha m+\frac{\beta^2}{\gamma}m=0.
+\end{equation}
+Multiplying by $\gamma$,
+\begin{equation}
+ \gamma(\bar Q-\alpha w)-(2\alpha\gamma-\beta^2)m=0.
+\end{equation}
+Hence the retailer's best-response functions are
+\begin{equation}
+ m^{BR}(w)=\frac{\gamma(\bar Q-\alpha w)}{2\alpha\gamma-\beta^2},
+ \qquad
+ s^{BR}(w)=\frac{\beta(\bar Q-\alpha w)}{2\alpha\gamma-\beta^2}.
+ \label{eq:app_ms_br}
+\end{equation}
+
+\subsection{Step 2: Manufacturer problem}
+
+Substitute \eqref{eq:app_ms_br} into the demand expression:
+\begin{align}
+ Q^{BR}(w)
+ &= \bar Q-\alpha\bigl(w+m^{BR}(w)\bigr)+\beta s^{BR}(w) \\
+ &= \bar Q-\alpha w
+ -\alpha\frac{\gamma(\bar Q-\alpha w)}{2\alpha\gamma-\beta^2}
+ +\beta\frac{\beta(\bar Q-\alpha w)}{2\alpha\gamma-\beta^2} \\
+ &= \frac{\alpha\gamma(\bar Q-\alpha w)}{2\alpha\gamma-\beta^2}.
+\end{align}
+Therefore the manufacturer solves
+\begin{equation}
+ \max_w \Pi_M(w)=w\cdot \frac{\alpha\gamma(\bar Q-\alpha w)}{2\alpha\gamma-\beta^2}.
+\end{equation}
+Because the denominator is constant in $w$, this is equivalent to maximizing
+\begin{equation}
+ f(w)=w(\bar Q-\alpha w)=\bar Q w-\alpha w^2.
+\end{equation}
+The derivative is
+\begin{equation}
+ f'(w)=\bar Q-2\alpha w.
+\end{equation}
+Setting $f'(w)=0$ gives
+\begin{equation}
+ w^{MS}=\frac{\bar Q}{2\alpha}.
+\end{equation}
+Since $f''(w)=-2\alpha<0$, this is the unique optimum.
+
+\subsection{Step 3: Follower decisions}
+
+Substitute $w^{MS}$ into \eqref{eq:app_ms_br}:
+\begin{align}
+ m^{MS}
+ &=\frac{\gamma\left(\bar Q-\alpha\cdot\frac{\bar Q}{2\alpha}\right)}{2\alpha\gamma-\beta^2}
+ =\frac{\bar Q\gamma}{2(2\alpha\gamma-\beta^2)},\\
+ s^{MS}
+ &=\frac{\beta\left(\bar Q-\alpha\cdot\frac{\bar Q}{2\alpha}\right)}{2\alpha\gamma-\beta^2}
+ =\frac{\bar Q\beta}{2(2\alpha\gamma-\beta^2)}.
+\end{align}
+Then
+\begin{equation}
+ p^{MS}=w^{MS}+m^{MS}
+ =\frac{\bar Q}{2\alpha}+\frac{\bar Q\gamma}{2(2\alpha\gamma-\beta^2)}
+ =\frac{\bar Q(3\alpha\gamma-\beta^2)}{2\alpha(2\alpha\gamma-\beta^2)}.
+\end{equation}
+
+\subsection{Step 4: Demand and profits}
+
+Demand is
+\begin{equation}
+ Q^{MS}=\frac{\alpha\gamma\bar Q}{2(2\alpha\gamma-\beta^2)}.
+\end{equation}
+Hence
+\begin{equation}
+ \Pi_M^{MS}=w^{MS}Q^{MS}
+ =\frac{\bar Q}{2\alpha}\cdot \frac{\alpha\gamma\bar Q}{2(2\alpha\gamma-\beta^2)}
+ =\frac{\gamma\bar Q^2}{4(2\alpha\gamma-\beta^2)},
+\end{equation}
+and
+\begin{equation}
+ \Pi_R^{MS}=m^{MS}Q^{MS}-\frac{1}{2}\gamma(s^{MS})^2
+ =\frac{\gamma\bar Q^2}{8(2\alpha\gamma-\beta^2)}.
+\end{equation}
+This proves Proposition~\ref{prop:ms}.
+
+\section{Proof of Proposition~\ref{prop:rs}: Retailer Stackelberg Equilibrium}
+\label{app:proof_rs}
+
+Under RS, the retailer chooses $(m,s)$ first and the manufacturer responds in
+$w$.
+
+\subsection{Step 1: Manufacturer best response given $(m,s)$}
+
+Given $(m,s)$, the manufacturer solves
+\begin{equation}
+ \max_w\; w\bigl(\bar Q-\alpha(w+m)+\beta s\bigr).
+\end{equation}
+The first-order condition is
+\begin{equation}
+ \bar Q-2\alpha w-\alpha m+\beta s=0,
+\end{equation}
+which yields the best response
+\begin{equation}
+ w^{BR}(m,s)=\frac{\bar Q-\alpha m+\beta s}{2\alpha}.
+ \label{eq:app_rs_brw}
+\end{equation}
+Because the second derivative is $-2\alpha<0$, this is optimal.
+
+\subsection{Step 2: Retailer reduced-form problem}
+
+Substitute \eqref{eq:app_rs_brw} into demand:
+\begin{align}
+ Q &= \bar Q-\alpha\bigl(w^{BR}(m,s)+m\bigr)+\beta s \\
+   &= \bar Q-\alpha\left(\frac{\bar Q-\alpha m+\beta s}{2\alpha}+m\right)+\beta s \\
+   &= \frac{\bar Q-\alpha m+\beta s}{2}.
+ \label{eq:app_rs_reduced_demand}
+\end{align}
+Thus the retailer's reduced-form objective is
+\begin{align}
+ \Pi_R(m,s)
+ &=m\cdot \frac{\bar Q-\alpha m+\beta s}{2}-\frac{1}{2}\gamma s^2.
+ \label{eq:app_rs_reduced_obj}
+\end{align}
+The Hessian of this reduced-form objective is
+\begin{equation}
+ H_R^{RS}=
+ \begin{pmatrix}
+ -\alpha & \beta/2\\
+ \beta/2 & -\gamma
+ \end{pmatrix}.
+\end{equation}
+It is negative definite if and only if $4\alpha\gamma-\beta^2>0$. Under this
+condition, the first-order conditions are sufficient for the unique interior RS
+equilibrium.
+The first-order conditions are
+\begin{align}
+ \frac{\partial \Pi_R}{\partial m}
+ &=\frac{\bar Q-2\alpha m+\beta s}{2}=0,
+ \label{eq:app_rs_foc_m}\\
+ \frac{\partial \Pi_R}{\partial s}
+ &=\frac{\beta m}{2}-\gamma s=0.
+ \label{eq:app_rs_foc_s}
+\end{align}
+From \eqref{eq:app_rs_foc_s},
+\begin{equation}
+ s=\frac{\beta m}{2\gamma}.
+ \label{eq:app_rs_s_of_m}
+\end{equation}
+Substituting into \eqref{eq:app_rs_foc_m} gives
+\begin{equation}
+ \bar Q-2\alpha m+\frac{\beta^2}{2\gamma}m=0.
+\end{equation}
+Multiplying by $2\gamma$,
+\begin{equation}
+ 2\gamma\bar Q-(4\alpha\gamma-\beta^2)m=0.
+\end{equation}
+Hence
+\begin{equation}
+ m^{RS}=\frac{2\gamma\bar Q}{4\alpha\gamma-\beta^2},
+ \qquad
+ s^{RS}=\frac{\beta\bar Q}{4\alpha\gamma-\beta^2}.
+\end{equation}
+
+\subsection{Step 3: Manufacturer response, demand, and profits}
+
+Substituting the retailer's choices into \eqref{eq:app_rs_brw},
+\begin{align}
+ w^{RS}
+ &=\frac{\bar Q-\alpha\cdot \frac{2\gamma\bar Q}{4\alpha\gamma-\beta^2}
+ +\beta\cdot\frac{\beta\bar Q}{4\alpha\gamma-\beta^2}}{2\alpha} \\
+ &=\frac{\gamma\bar Q}{4\alpha\gamma-\beta^2}.
+\end{align}
+Therefore
+\begin{equation}
+ p^{RS}=w^{RS}+m^{RS}=\frac{3\gamma\bar Q}{4\alpha\gamma-\beta^2}.
+\end{equation}
+Demand is
+\begin{equation}
+ Q^{RS}=\bar Q-\alpha p^{RS}+\beta s^{RS}
+ =\frac{\alpha\gamma\bar Q}{4\alpha\gamma-\beta^2}.
+\end{equation}
+Thus
+\begin{equation}
+ \Pi_M^{RS}=w^{RS}Q^{RS}
+ =\frac{\alpha\gamma^2\bar Q^2}{(4\alpha\gamma-\beta^2)^2},
+\end{equation}
+and
+\begin{equation}
+ \Pi_R^{RS}=m^{RS}Q^{RS}-\frac{1}{2}\gamma(s^{RS})^2
+ =\frac{\gamma\bar Q^2}{2(4\alpha\gamma-\beta^2)}.
+\end{equation}
+This proves Proposition~\ref{prop:rs}.
+
+\section{Proof of Proposition~\ref{prop:in}: Integrated Benchmark}
+\label{app:proof_in}
+
+Under integration, the channel chooses $(p,s)$ to maximize total profit
+\begin{equation}
+ \Pi_{Total}(p,s)=p(\bar Q-\alpha p+\beta s)-\frac{1}{2}\gamma s^2.
+\end{equation}
+The first-order conditions are
+\begin{align}
+ \bar Q-2\alpha p+\beta s&=0,
+ \label{eq:app_in_foc_p}\\
+ \beta p-\gamma s&=0.
+ \label{eq:app_in_foc_s}
+\end{align}
+From \eqref{eq:app_in_foc_s},
+\begin{equation}
+ s=\frac{\beta}{\gamma}p.
+\end{equation}
+Substitute into \eqref{eq:app_in_foc_p}:
+\begin{equation}
+ \bar Q-2\alpha p+\frac{\beta^2}{\gamma}p=0.
+\end{equation}
+Multiplying by $\gamma$,
+\begin{equation}
+ \bar Q\gamma-(2\alpha\gamma-\beta^2)p=0,
+\end{equation}
+so
+\begin{equation}
+ p^{IN}=\frac{\bar Q\gamma}{2\alpha\gamma-\beta^2},
+ \qquad
+ s^{IN}=\frac{\bar Q\beta}{2\alpha\gamma-\beta^2}.
+\end{equation}
+Demand is
+\begin{equation}
+ Q^{IN}=\bar Q-\alpha p^{IN}+\beta s^{IN}
+ =\frac{\alpha\gamma\bar Q}{2\alpha\gamma-\beta^2}.
+\end{equation}
+Finally,
+\begin{equation}
+ \Pi_{Total}^{IN}=p^{IN}Q^{IN}-\frac{1}{2}\gamma(s^{IN})^2
+ =\frac{\gamma\bar Q^2}{2(2\alpha\gamma-\beta^2)}.
+\end{equation}
+Under the equal-split normalization used in Chapter~\ref{chap:model1},
+\begin{equation}
+ \Pi_M^{IN}=\Pi_R^{IN}=\frac{1}{2}\Pi_{Total}^{IN}
+ =\frac{\gamma\bar Q^2}{4(2\alpha\gamma-\beta^2)}.
+\end{equation}
+This proves Proposition~\ref{prop:in}.
+
+\section{Auxiliary Derivations for Cross-Regime Comparisons}
+\label{app:rankings}
+
+This section records the algebra behind the ranking results summarized in
+Chapter~\ref{chap:model1}. Let
+\begin{equation}
+ x:=\frac{\beta^2}{\alpha\gamma},
+ \qquad 0<x<2,
+\end{equation}
+so that interior solutions for all regimes are available. Then
+\begin{equation}
+ \Delta_2=\alpha\gamma(2-x),
+ \qquad
+ \Delta_3=\alpha\gamma(3-x),
+ \qquad
+ \Delta_4=\alpha\gamma(4-x).
+\end{equation}
+
+\subsection{Price ranking in the baseline region $x<1$}
+
+Using the closed forms,
+\begin{equation}
+ p^{IN}=\frac{\bar Q}{\alpha(2-x)},
+ \qquad
+ p^{VN}=\frac{2\bar Q}{\alpha(3-x)},
+ \qquad
+ p^{MS}=\frac{\bar Q(3-x)}{2\alpha(2-x)},
+ \qquad
+ p^{RS}=\frac{3\bar Q}{\alpha(4-x)}.
+\end{equation}
+To show $p^{RS}>p^{MS}$ when $x<1$, compare denominators:
+\begin{align}
+ p^{RS}>p^{MS}
+ &\iff \frac{3}{4-x}>\frac{3-x}{2(2-x)} \\
+ &\iff 6(2-x)>(3-x)(4-x) \\
+ &\iff x(1-x)>0,
+\end{align}
+which holds for $0<x<1$.
+Similarly,
+\begin{align}
+ p^{MS}>p^{VN}
+ &\iff \frac{3-x}{2(2-x)}>\frac{2}{3-x} \\
+ &\iff (3-x)^2>4(2-x) \\
+ &\iff (x-1)^2>0,
+\end{align}
+which holds for all $x\neq 1$.
+Finally,
+\begin{align}
+ p^{VN}>p^{IN}
+ &\iff \frac{2}{3-x}>\frac{1}{2-x}
+ \iff 2(2-x)>3-x
+ \iff 1>x.
+\end{align}
+Hence for $x<1$,
+\begin{equation}
+ p^{RS}>p^{MS}>p^{VN}>p^{IN}.
+\end{equation}
+
+\subsection{Price ranking in the high-green-pull region $1<x<2$}
+
+The same inequalities flip where the final comparison depends on the sign of
+$1-x$. Since $1-x<0$ in this region,
+\begin{equation}
+ p^{IN}>p^{VN},
+ \qquad p^{VN}>p^{RS},
+ \qquad p^{MS}>p^{VN},
+\end{equation}
+which yields
+\begin{equation}
+ p^{IN}>p^{MS}>p^{VN}>p^{RS}.
+\end{equation}
+
+\subsection{Recycling-maturity ranking}
+
+Using the closed forms,
+\begin{equation}
+ s^{IN}=\frac{\bar Q\beta}{\alpha\gamma(2-x)},
+ \quad
+ s^{VN}=\frac{\bar Q\beta}{\alpha\gamma(3-x)},
+ \quad
+ s^{MS}=\frac{\bar Q\beta}{2\alpha\gamma(2-x)},
+ \quad
+ s^{RS}=\frac{\bar Q\beta}{\alpha\gamma(4-x)}.
+\end{equation}
+Since the numerators are common and positive, rankings follow from comparing the
+corresponding denominators. In particular,
+\begin{equation}
+ s^{IN}>s^{VN}>s^{RS}
+ \qquad\text{for all }0<x<2.
+\end{equation}
+To compare $s^{VN}$ and $s^{MS}$,
+\begin{align}
+ s^{VN}>s^{MS}
+ &\iff \frac{1}{3-x}>\frac{1}{2(2-x)} \\
+ &\iff 2(2-x)>3-x \\
+ &\iff 1>x.
+\end{align}
+Therefore,
+\begin{equation}
+ s^{IN}>s^{VN}>s^{MS}>s^{RS}
+ \quad\text{if }x<1,
+\end{equation}
+and
+\begin{equation}
+ s^{IN}>s^{MS}>s^{VN}>s^{RS}
+ \quad\text{if }1<x<2.
+\end{equation}
+The same logic applies to demand because each demand expression has the same
+ordering structure after factoring out the common term $\alpha\gamma\bar Q$.
+
+\subsection{Retailer-profit threshold between MS and RS}
+
+The chapter states that in the high-green-pull region the ranking between
+$\Pi_R^{MS}$ and $\Pi_R^{RS}$ flips at $x=4/3$. We verify that here.
+Write
+\begin{equation}
+ \Pi_R^{MS}=\frac{\bar Q^2}{8\alpha(2-x)},
+ \qquad
+ \Pi_R^{RS}=\frac{\bar Q^2}{2\alpha(4-x)}.
+\end{equation}
+Then
+\begin{align}
+ \Pi_R^{MS}>\Pi_R^{RS}
+ &\iff \frac{1}{8(2-x)}>\frac{1}{2(4-x)} \\
+ &\iff 2(4-x)>8(2-x) \\
+ &\iff 4-2x>16-8x \\
+ &\iff 6x>12 \\
+ &\iff x>\frac{4}{3}.
+\end{align}
+Hence
+\begin{equation}
+ \Pi_R^{RS}>\Pi_R^{MS}
+ \quad\text{if }1<x<\frac{4}{3},
+ \qquad
+ \Pi_R^{MS}>\Pi_R^{RS}
+ \quad\text{if }\frac{4}{3}<x<2.
+\end{equation}
+
+\section{Derivatives Used in the Comparative Statics Section}
+\label{app:comparative_statics}
+
+This section records the derivative calculations used in the comparative-statics
+summary of Chapter~\ref{chap:model1}.
+
+\subsection{Vertical Nash derivatives}
+
+Using
+\begin{equation}
+ w^{VN}=m^{VN}=\frac{\bar Q\gamma}{3\alpha\gamma-\beta^2},
+ \qquad
+ s^{VN}=\frac{\bar Q\beta}{3\alpha\gamma-\beta^2},
+\end{equation}
+we obtain
+\begin{equation}
+ \frac{\partial w^{VN}}{\partial \alpha}
+ =-\frac{3\bar Q\gamma^2}{(3\alpha\gamma-\beta^2)^2}<0,
+ \qquad
+ \frac{\partial s^{VN}}{\partial \alpha}
+ =-\frac{3\bar Q\beta\gamma}{(3\alpha\gamma-\beta^2)^2}<0.
+\end{equation}
+Similarly,
+\begin{equation}
+ \frac{\partial w^{VN}}{\partial \beta}
+ =\frac{2\bar Q\beta\gamma}{(3\alpha\gamma-\beta^2)^2}>0,
+ \qquad
+ \frac{\partial s^{VN}}{\partial \beta}
+ =\frac{\bar Q(3\alpha\gamma+\beta^2)}{(3\alpha\gamma-\beta^2)^2}>0.
+\end{equation}
+For retailer profit,
+\begin{equation}
+ \Pi_R^{VN}=\frac{\gamma\bar Q^2(2\alpha\gamma-\beta^2)}{2(3\alpha\gamma-\beta^2)^2}.
+\end{equation}
+Differentiating with respect to $\alpha$ yields
+\begin{equation}
+ \frac{\partial \Pi_R^{VN}}{\partial \alpha}
+ =-\frac{\bar Q^2\gamma^2(3\alpha\gamma-2\beta^2)}{(3\alpha\gamma-\beta^2)^3},
+\end{equation}
+which changes sign when $3\alpha\gamma-2\beta^2=0$, that is,
+\begin{equation}
+ \beta^2=\frac{3}{2}\alpha\gamma.
+\end{equation}
+Differentiating with respect to $\beta$ gives
+\begin{equation}
+ \frac{\partial \Pi_R^{VN}}{\partial \beta}
+ =\frac{\bar Q^2\beta\gamma(\alpha\gamma-\beta^2)}{(3\alpha\gamma-\beta^2)^3},
+\end{equation}
+which changes sign at $\beta^2=\alpha\gamma$.
+Finally,
+\begin{equation}
+ \frac{\partial \Pi_R^{VN}}{\partial \gamma}
+ =-\frac{\bar Q^2\beta^2(\alpha\gamma-\beta^2)}{2(3\alpha\gamma-\beta^2)^3},
+\end{equation}
+which again changes sign at $\beta^2=\alpha\gamma$.
+
+\subsection{Manufacturer-Stackelberg derivatives}
+
+Because
+\begin{equation}
+ w^{MS}=\frac{\bar Q}{2\alpha},
+\end{equation}
+we immediately have
+\begin{equation}
+ \frac{\partial w^{MS}}{\partial \alpha}=-\frac{\bar Q}{2\alpha^2}<0,
+ \qquad
+ \frac{\partial w^{MS}}{\partial \beta}=0,
+ \qquad
+ \frac{\partial w^{MS}}{\partial \gamma}=0.
+\end{equation}
+The remaining closed forms in Chapter~\ref{chap:model1} imply the sign pattern
+reported in the main text:
+\begin{equation}
+ \frac{\partial m^{MS}}{\partial \alpha}<0,
+ \quad
+ \frac{\partial s^{MS}}{\partial \alpha}<0,
+ \quad
+ \frac{\partial Q^{MS}}{\partial \alpha}<0,
+ \quad
+ \frac{\partial \Pi_M^{MS}}{\partial \alpha}<0,
+ \quad
+ \frac{\partial \Pi_R^{MS}}{\partial \alpha}<0,
+\end{equation}
+and
+\begin{equation}
+ \frac{\partial m^{MS}}{\partial \beta}>0,
+ \quad
+ \frac{\partial s^{MS}}{\partial \beta}>0,
+ \quad
+ \frac{\partial Q^{MS}}{\partial \beta}>0,
+ \quad
+ \frac{\partial \Pi_M^{MS}}{\partial \beta}>0,
+ \quad
+ \frac{\partial \Pi_R^{MS}}{\partial \beta}>0.
+\end{equation}
+Likewise,
+\begin{equation}
+ \frac{\partial m^{MS}}{\partial \gamma}<0,
+ \quad
+ \frac{\partial s^{MS}}{\partial \gamma}<0,
+ \quad
+ \frac{\partial Q^{MS}}{\partial \gamma}<0,
+ \quad
+ \frac{\partial \Pi_M^{MS}}{\partial \gamma}<0,
+ \quad
+ \frac{\partial \Pi_R^{MS}}{\partial \gamma}<0.
+\end{equation}
+
+\subsection{Retailer-Stackelberg derivatives}
+
+For RS, the closed forms are
+\begin{equation}
+ w^{RS}=\frac{\gamma\bar Q}{4\alpha\gamma-\beta^2},
+ \quad
+ m^{RS}=\frac{2\gamma\bar Q}{4\alpha\gamma-\beta^2},
+ \quad
+ s^{RS}=\frac{\beta\bar Q}{4\alpha\gamma-\beta^2}.
+\end{equation}
+Therefore,
+\begin{equation}
+ \frac{\partial w^{RS}}{\partial \alpha}
+ =-\frac{4\bar Q\gamma^2}{(4\alpha\gamma-\beta^2)^2}<0,
+ \qquad
+ \frac{\partial w^{RS}}{\partial \beta}
+ =\frac{2\bar Q\beta\gamma}{(4\alpha\gamma-\beta^2)^2}>0,
+\end{equation}
+and
+\begin{equation}
+ \frac{\partial w^{RS}}{\partial \gamma}
+ =-\frac{\bar Q\beta^2}{(4\alpha\gamma-\beta^2)^2}<0.
+\end{equation}
+The same denominator structure yields the sign pattern reported in the chapter:
+all operational variables fall with $\alpha$, rise with $\beta$, and the
+retailer and manufacturer profits fall with $\gamma$.
+
+\section{Appendix to the Stage-0 Meta-Game}
+\label{app:meta_game}
+
+The chapter maps the stage-0 actions into operating regimes as follows:
+\begin{equation}
+ (C,C)\mapsto IN,
+ \qquad
+ (L,C)\mapsto MS,
+ \qquad
+ (C,L)\mapsto RS,
+ \qquad
+ (L,L)\mapsto VN.
+\end{equation}
+The argument for the baseline coordination game can be stated formally.
+
+\subsection{Manufacturer ranking}
+
+With the small non-cooperative overhead $F>0$, the manufacturer's net payoffs are
+\begin{equation}
+ \Pi_M^{VN}(F)=\Pi_M^{VN}(0)-F,
+ \quad
+ \Pi_M^{MS}(F)=\Pi_M^{MS}(0)-F,
+ \quad
+ \Pi_M^{RS}(F)=\Pi_M^{RS}(0)-F,
+\end{equation}
+and
+\begin{equation}
+ \Pi_M^{IN}(F)=\Pi_M^{IN}(0)-\frac{F}{2}.
+\end{equation}
+Since the chapter uses the equal-split normalization
+$\Pi_M^{IN}(0)=\Pi_M^{MS}(0)$, it follows immediately that
+\begin{equation}
+ \Pi_M^{IN}(F)-\Pi_M^{MS}(F)=\frac{F}{2}>0.
+\end{equation}
+Therefore the manufacturer strictly prefers coordination to manufacturer
+leadership once the tie-break term is introduced.
+
+\subsection{Retailer ranking in the baseline region}
+
+For $x<1$, the chapter's profit comparisons imply
+\begin{equation}
+ \Pi_R^{IN}>\Pi_R^{RS}>\Pi_R^{VN}>\Pi_R^{MS}.
+\end{equation}
+Hence the ordinal stage-0 payoff matrix is
+\begin{center}
+\begin{tabular}{c|cc}
+ & $R:C$ & $R:L$ \\\hline
+$M:C$ & $(4,4)$ & $(1,3)$ \\
+$M:L$ & $(3,1)$ & $(2,2)$
+\end{tabular}
+\end{center}
+The best responses are immediate:
+\begin{itemize}
+ \item if the retailer chooses $C$, then $M$ prefers $C$ because $4>3$;
+ \item if the retailer chooses $L$, then $M$ prefers $L$ because $2>1$;
+ \item if the manufacturer chooses $C$, then $R$ prefers $C$ because $4>3$;
+ \item if the manufacturer chooses $L$, then $R$ prefers $L$ because $2>1$.
+\end{itemize}
+Thus $(C,C)$ and $(L,L)$ are Nash equilibria. The former is Pareto-superior,
+while the latter is the inefficient coordination-failure outcome.
+
+\subsection{High-green-pull region}
+
+When $1<x<2$, the retailer's payoff from VN becomes relatively less attractive,
+and the chapter shows that the retailer's ranking strengthens in favor of
+coordination or, failing that, manufacturer leadership. This is why the set of
+stage-0 equilibria narrows toward the coordinated outcome and the
+manufacturer-led outcome with a willing retailer.

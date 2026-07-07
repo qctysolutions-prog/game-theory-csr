@@ -1,0 +1,1261 @@
+\chapter{CSR-Driven Manufacturer--Retailer Coordination}
+\label{chap:model1}
+
+This chapter develops the first model of this dissertation: a CSR-driven supply-chain governance game between a Manufacturer and a Retailer. The central question is how a supply chain should organize pricing authority, operating responsibility, and CSR investment when one party benefits from a socially responsible activity while another party bears much of its operating cost. CSR is therefore not treated as a vague reputation term. It is modeled as a concrete channel capability that changes demand, cost, and bargaining incentives.
+
+The model is intentionally written as a general CSR coordination problem. The CSR activity can represent a product-stewardship service, a social-compliance program, a responsible sourcing effort, an emissions-reduction initiative, or another observable responsibility initiative. What matters is the governance structure. Consumers value credible CSR maturity, so stronger CSR capability can increase demand. Building that capability is costly. The model therefore connects three decisions that are often separated in practice: wholesale pricing, retail pricing, and investment in CSR-driven maturity.
+
+The analysis compares four operating regimes. In the Vertical Nash regime (VN), the Manufacturer and Retailer move simultaneously. In the Manufacturer Stackelberg regime (MS), the Manufacturer sets the wholesale price before the Retailer responds. In the Retailer Stackelberg regime (RS), the Retailer commits to its markup and CSR maturity before the Manufacturer chooses the wholesale price. The integrated benchmark (IN) represents a coordinated CSR channel that internalizes the full demand and cost consequences of CSR maturity. These regimes show how vertical power and timing shape CSR effort, consumer price, demand, and profit allocation.
+
+The chapter also introduces a stage-0 regime-choice game. Before operational pricing and CSR-maturity decisions are made, each party chooses whether to coordinate or to attempt leadership. This layer makes CSR governance endogenous. The channel is not assumed to be Manufacturer-led, Retailer-led, or coordinated from the start.
+
+The chapter is organized as follows. Section~\ref{sec:model_primitives} establishes the CSR channel structure, demand function, cost structure, profit functions, and modeling assumptions. Sections~\ref{sec:vn} through~\ref{sec:in} derive the equilibrium outcomes under the four operating regimes. Section~\ref{sec:cross_regime} compares the regimes across CSR-pull regions. Section~\ref{sec:meta_game} develops the endogenous regime-choice meta-game. Section~\ref{sec:ch3_csr_usecase} then translates the general CSR model into an EV battery take-back and recycling use case before Section~\ref{sec:ch3_conclusion} concludes.
+
+% ============================================================
+\section{Model Primitives and Supply Chain Structure}
+\label{sec:model_primitives}
+% ============================================================
+
+\subsection{Supply Chain Architecture}
+
+The model considers a bilateral channel consisting of a single Manufacturer, denoted by $M$, and a single Retailer, denoted by $R$. Manufacturer produces a product and sells it to Retailer at a per-unit wholesale price $w>0$. The Retailer then sells the same product to consumers at a retail price of $p \geq w $. Sometimes it is convenient and economically important to focus on the related variable of per-unit markup   $m = p-w$, so that the retail price then becomes  $p = w+m.$
+
+Thus, in the decentralized games the manufacturer chooses $w$, while the retailer chooses $(m,s)$, where $s\geq 0$ denotes CSR-driven recycling maturity. The retail price $p$ is then an outcome implied by $w+m$, not an independent downstream decision variable. This markup formulation is used consistently in the VN, MS, and RS derivations below.
+
+The variable $s$ captures the maturity of the battery recycling system as a CSR responsibility made operational. Higher values of $s$ represent stronger end-of-life collection, sorting, recovery, traceability, and closed-loop recycling capabilities. In practical terms, a low value of $s$ corresponds to basic compliance-level take-back, while a high value of $s$ corresponds to a more credible and integrated CSR recycling system that consumers can observe or trust.
+
+The bilateral structure is economically motivated by the organization of many EV distribution systems. Manufacturers typically control product design, production, compliance exposure, and wholesale terms. Retailers are closer to consumers and often manage sales, service interactions, and the practical take-back interface. This dyadic setting is therefore a useful benchmark for studying vertical incentive misalignment before extending the analysis to the multi-retailer recycling network in Chapter~\ref{chap:model2}.
+
+\subsection{Demand Function}
+
+Consumer demand for the product is modeled as
+\begin{equation}
+    Q(p,s)=\bar{Q}-\alpha p+\beta s,
+    \label{eq:demand}
+\end{equation}
+where $\bar{Q}>0$ is baseline market size, $\alpha>0$ measures price sensitivity, and $\beta>0$ measures the demand value of CSR-driven maturity. A higher retail price reduces demand. A higher $s$ increases demand because it makes the firm's CSR promise more credible. The parameter $\beta$ is therefore the consumer-side CSR pull.
+
+Using the markup representation $p=w+m$, the demand function in the decentralized games becomes
+\begin{equation*}
+    Q(w,m,s)=\bar{Q}-\alpha(w+m)+\beta s.
+\end{equation*}
+This expression is the demand function used in the decentralized equilibrium derivations. It keeps the CSR mechanism visible: pricing reduces demand through $\alpha(w+m)$, while credible CSR maturity expands demand through $\beta s$.
+
+The parameter $\beta$ plays a central role in the chapter. When $\beta^2<\alpha\gamma$, consumer valuation of CSR-driven maturity is moderate relative to price sensitivity and investment cost curvature. This is the baseline or moderate-CSR-pull region. When $\alpha\gamma<\beta^2<2\alpha\gamma$, consumer valuation of CSR maturity is strong but the model still admits interior solutions. This is the high-CSR-pull region. These two regions generate different price, demand, CSR-maturity, and profit rankings.
+
+\subsection{Cost Structure}
+
+The Retailer bears the cost of CSR-driven maturity investment in the baseline model. This is not a claim that retailers always pay alone in practice. It is a modeling device that exposes the governance problem. The party closest to consumers may need to fund the visible CSR interface, while the Manufacturer also benefits from higher demand and brand credibility. The investment cost is strictly convex:
+\begin{equation*}
+    C_s(s)=\frac{1}{2}\gamma s^2,
+\end{equation*}
+where $\gamma>0$ is the cost-curvature parameter. The quadratic form captures increasing marginal cost. Basic CSR-process improvements may be relatively inexpensive. Advanced monitoring, service execution, compliance documentation, and CSR verification require progressively larger investment.
+
+The baseline model assigns this cost to the Retailer because the Retailer is the consumer-facing party and is assumed to operate or coordinate the CSR interface. This assumption is intentionally stylized. It allows the chapter to isolate the main CSR conflict: the party that pays for maturity may not capture all of the demand benefit created by that maturity.
+
+\subsection{Profit Functions}
+
+The Manufacturer's profit in the decentralized CSR channel is
+\begin{equation}
+    \Pi_M(w,m,s)=w\,Q(w,m,s)=w\left[\bar{Q}-\alpha(w+m)+\beta s\right].
+    \label{eq:pi_M_markup}
+\end{equation}
+The Retailer's profit is
+\begin{equation}
+    \Pi_R(w,m,s)=m\,Q(w,m,s)-\frac{1}{2}\gamma s^2
+    =m\left[\bar{Q}-\alpha(w+m)+\beta s\right]-\frac{1}{2}\gamma s^2.
+    \label{eq:pi_R_markup}
+\end{equation}
+Equivalently, since $m=p-w$, the Retailer profit can also be written as
+\begin{equation*}
+    \Pi_R=(p-w)\left(\bar{Q}-\alpha p+\beta s\right)-\frac{1}{2}\gamma s^2.
+\end{equation*}
+However, the strategic variable in the decentralized games is $m$, with $p=w+m$ reported as the resulting consumer price. In the integrated benchmark, by contrast, the channel directly chooses $(p,s)$ because the wholesale price is no longer a real strategic transaction between independent firms. This distinction matters for CSR governance. Decentralized firms choose margins while disagreeing over who captures the return from $s$. The integrated channel chooses the consumer-facing CSR level and price jointly.
+
+\subsection{Key Modeling Assumptions}
+
+\textbf{Assumption 1 (Bilateral CSR channel).} The supply chain consists of one Manufacturer and one Retailer. This isolates the vertical CSR governance problem before the multi-retailer extension in Chapter~\ref{chap:model2}.
+
+\textbf{Assumption 2 (Linear CSR demand response).} Demand is linear in retail price and CSR-driven maturity. This preserves tractability while retaining the core trade-off between consumer price discipline and CSR-driven demand expansion.
+
+\textbf{Assumption 3 (Quadratic CSR-maturity cost).} The Retailer's CSR-maturity cost is $C_s(s)=\frac12\gamma s^2$. The convex form captures increasing marginal cost of improving the CSR credibility and operational capability of the CSR system.
+
+\textbf{Assumption 4 (Complete information).} Both players know $(\bar{Q},\alpha,\beta,\gamma)$ and each other's payoff functions. This allows the Nash and Stackelberg equilibria to be derived in closed form.
+
+\textbf{Assumption 5 (Retailer bears the CSR-maturity cost).} The Retailer pays the cost of $s$. The Manufacturer benefits from higher demand through wholesale sales and CSR credibility but does not directly pay the investment cost in the baseline model. This asymmetry creates the CSR incentive conflict studied in the chapter.
+
+\textbf{Assumption 6 (Common interior regularity).} 
+For the cross-regime comparisons and the stage-0 meta-game, this chapter imposes the common interior domain
+\begin{equation}
+    \Delta_2=2\alpha\gamma-\beta^2>0
+    \label{eq:common_regularity}
+\end{equation}
+This condition is the tightest domain needed to compare VN, MS, RS, and IN using interior maxima under the unconstrained quadratic model. It ensures the second-order conditions for VN, MS, and IN, and it also implies the weaker RS condition. This condition is equivalent to $x=\beta^2/(\alpha\gamma)<2$. 
+
+The RS game can be solved as a standalone Stackelberg game under the weaker condition $4\alpha\gamma-\beta^2>0$, equivalently $0<x<4$. However, the range $2<x<4$ is not used for the main rankings because VN, MS, and IN no longer satisfy the interior maximum condition there. For this reason, all cross-regime comparisons below use the tighter common domain $0<x<2$.
+
+Table~\ref{tab:ch3-notation} summarizes the notation used throughout this chapter. The table should be read as a CSR governance map. The variables $w$ and $m$ describe how economic power is exercised in the channel. The variables $s$, $\beta$, and $\gamma$ describe how CSR maturity is valued, built, and constrained.
+
+\begin{table}[htbp]
+\centering
+\caption{Summary of Notation}
+\label{tab:ch3-notation}
+\begin{tabular}{lll}
+\toprule
+\textbf{Symbol} & \textbf{Description} & \textbf{Domain} \\
+\midrule
+$\bar{Q}$ & Baseline demand & $\bar{Q}>0$ \\
+$\alpha$ & Price sensitivity & $\alpha>0$ \\
+$\beta$ & CSR attractiveness / CSR premium & $\beta>0$ \\
+$\gamma$ & CSR-maturity cost curvature & $\gamma>0$ \\
+$w$ & Manufacturer's wholesale price & $w>0$ \\
+$m$ & Retailer's per-unit markup & $m>0$ \\
+$p=w+m$ & Consumer retail price & $p>w$ \\
+$s$ & CSR-driven maturity index & $s\geq 0$ \\
+$Q(p,s)$ & Market demand & $Q\geq 0$ \\
+$\Pi_M$ & Manufacturer profit & \\
+$\Pi_R$ & Retailer profit & \\
+$\Pi_T$ or $\Pi_{Total}$ & Total channel profit & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================
+\section{Vertical Nash Equilibrium}
+\label{sec:vn}
+% ============================================================
+
+\subsection{Game-Theoretic Setup}
+
+The Vertical Nash (VN) regime models simultaneous non-cooperative decision making. The Manufacturer chooses $w$, and the Retailer simultaneously chooses $(m,s)$. The consumer price is then $p=w+m$. A VN equilibrium is a strategy profile $(w^{VN},m^{VN},s^{VN})$ such that neither player can improve its payoff by unilaterally changing its own decision.
+
+This regime is the natural benchmark for an uncoordinated CSR channel. The Manufacturer protects the wholesale margin. The Retailer protects the downstream markup and chooses the CSR maturity level. Neither party fully internalizes how its decision changes the other party's payoff.
+
+The two optimization problems are
+\begin{equation*}
+    \max_w \Pi_M(w,m,s),
+    \qquad
+    \max_{m,s}\Pi_R(w,m,s).
+\end{equation*}
+
+\subsection{Derivation of Equilibrium}
+
+Using~\eqref{eq:pi_R_markup}, the Retailer's first-order conditions with respect to $m$ and $s$ are
+\begin{align}
+    \frac{\partial \Pi_R}{\partial m}
+    &=\bar{Q}-\alpha(w+2m)+\beta s=0,
+    \label{eq:foc_R_m}\\
+    \frac{\partial \Pi_R}{\partial s}
+    &=\beta m-\gamma s=0.
+    \label{eq:foc_R_s}
+\end{align}
+Equation~\eqref{eq:foc_R_s} implies
+\begin{equation*}
+    s=\frac{\beta}{\gamma}m.
+\end{equation*}
+This condition is useful because it links the economic margin to CSR effort. The Retailer invests more in CSR maturity when the downstream markup is larger or when consumers respond more strongly to CSR. It invests less when CSR maturity is more costly.
+
+Using~\eqref{eq:pi_M_markup}, the Manufacturer's first-order condition with respect to $w$ is
+\begin{equation}
+    \frac{\partial \Pi_M}{\partial w}
+    =\bar{Q}-\alpha(2w+m)+\beta s=0.
+    \label{eq:foc_M_w_markup}
+\end{equation}
+Solving~\eqref{eq:foc_R_m}--\eqref{eq:foc_M_w_markup} gives the VN equilibrium. The three first-order conditions show the core CSR tension in compact form. The Retailer chooses $s$, but the demand gain created by $s$ also raises the Manufacturer's wholesale revenue.
+
+\subsection{Equilibrium Outcomes}
+
+The following proposition reports the simultaneous-move benchmark. It gives the wholesale price, Retailer markup, consumer price, CSR maturity, demand, and each firm's profit when neither party has a timing advantage.
+
+\begin{proposition}[Vertical Nash Equilibrium]
+\label{prop:vn}
+Under $2\alpha\gamma-\beta^2>0$, the unique interior Vertical Nash equilibrium is
+\begin{align*}
+    w^{VN} &= \frac{\bar{Q}\gamma}{3\alpha\gamma-\beta^2},\\
+    m^{VN} &= \frac{\bar{Q}\gamma}{3\alpha\gamma-\beta^2},\\
+    p^{VN} &= \frac{2\bar{Q}\gamma}{3\alpha\gamma-\beta^2},\\
+    s^{VN} &= \frac{\bar{Q}\beta}{3\alpha\gamma-\beta^2},\\
+    Q^{VN} &= \frac{\alpha\gamma\bar{Q}}{3\alpha\gamma-\beta^2},\\
+    \Pi_M^{VN} &= \frac{\alpha\bar{Q}^2\gamma^2}{(3\alpha\gamma-\beta^2)^2},\\
+    \Pi_R^{VN} &= \frac{\gamma\bar{Q}^2(2\alpha\gamma-\beta^2)}{2(3\alpha\gamma-\beta^2)^2}.
+\end{align*}
+\end{proposition}
+
+\subsection{Economic Interpretation}
+
+The VN equilibrium has two immediate implications. First, the Manufacturer margin and Retailer markup are equal:
+\begin{equation*}
+    w^{VN}=m^{VN}.
+\end{equation*}
+This equality reflects the symmetry of simultaneous play in the markup formulation. Neither party has a timing advantage, so neither can use a reaction function to extract additional surplus before the other moves. The equality should not be read as coordination. It is only a balance of decentralized market power.
+
+Second, the relevant interiority condition is stronger than simple positivity of the denominator $3\alpha\gamma-\beta^2$. The Retailer's Hessian in $(m,s)$ is
+\begin{equation*}
+    H_R=\begin{pmatrix}
+        -2\alpha & \beta\\
+        \beta & -\gamma
+    \end{pmatrix}.
+\end{equation*}
+This matrix is negative definite when
+\begin{equation*}
+    2\alpha\gamma-\beta^2>0.
+\end{equation*}
+Therefore the all-regime condition~\eqref{eq:common_regularity} ensures that the VN first-order conditions identify a unique maximum, not merely a stationary point. Economically, the condition requires price sensitivity and CSR cost curvature to be sufficiently strong relative to the CSR-demand effect.
+
+Finally, the VN outcome still contains double marginalization. The Manufacturer and Retailer each add a margin, so the consumer price is higher and total channel performance is lower than under full coordination. CSR maturity is also chosen from the Retailer's private payoff, not from total channel value.
+
+% ============================================================
+\section{Stackelberg Leadership Games}
+\label{sec:stackelberg}
+% ============================================================
+
+\subsection{Game-Theoretic Setup and Backward Induction}
+
+Stackelberg regimes introduce sequential timing. One player moves first and the other observes that choice before responding. The solution concept is subgame-perfect Nash equilibrium, derived by backward induction. The follower's best response is solved first; the leader then chooses its decision while anticipating that response.
+
+Two leadership structures are analyzed. In Manufacturer Stackelberg (MS), the Manufacturer chooses $w$ first and the Retailer responds with $(m,s)$. In Retailer Stackelberg (RS), the Retailer commits to $(m,s)$ first and the Manufacturer responds with $w$. In both decentralized Stackelberg regimes, the consumer price is $p=w+m$.
+
+The Stackelberg cases are not only pricing variants. They represent different CSR governance structures. MS gives the upstream firm the first move in setting the economic terms of the CSR channel. RS gives the downstream firm the first move in shaping the consumer-facing margin and CSR maturity.
+
+\subsection{Manufacturer Stackelberg (MS) Equilibrium}
+
+In the MS regime, the Manufacturer sets $w$ first. Given $w$, the Retailer solves
+\begin{equation*}
+    \max_{m,s}\left\{m\left[\bar{Q}-\alpha(w+m)+\beta s\right]-\frac12\gamma s^2\right\}.
+\end{equation*}
+The Retailer's first-order conditions imply the best responses
+\begin{align*}
+    m^{BR}(w)&=\frac{\gamma(\bar{Q}-\alpha w)}{2\alpha\gamma-\beta^2},\\
+    s^{BR}(w)&=\frac{\beta(\bar{Q}-\alpha w)}{2\alpha\gamma-\beta^2}.
+\end{align*}
+The corresponding retail-price response is
+\begin{equation*}
+    p^{BR}(w)=w+m^{BR}(w)
+    =w+\frac{\gamma(\bar{Q}-\alpha w)}{2\alpha\gamma-\beta^2}.
+\end{equation*}
+Substituting the follower's best response into the Manufacturer's objective yields
+\begin{equation*}
+    \Pi_M(w)=w\frac{\alpha\gamma(\bar{Q}-\alpha w)}{2\alpha\gamma-\beta^2}.
+\end{equation*}
+Maximizing this expression gives the MS equilibrium.
+
+The next proposition shows how the equilibrium changes when the Manufacturer moves first. The Manufacturer anticipates the Retailer's markup and CSR-maturity response, so the result captures the value of upstream leadership in the CSR channel.
+
+\begin{proposition}[Manufacturer Stackelberg Equilibrium]
+\label{prop:ms}
+Under $2\alpha\gamma-\beta^2>0$, the unique interior MS equilibrium is
+\begin{align*}
+    w^{MS} &= \frac{\bar{Q}}{2\alpha},\\
+    m^{MS} &= \frac{\bar{Q}\gamma}{2(2\alpha\gamma-\beta^2)},\\
+    p^{MS} &= \frac{\bar{Q}(3\alpha\gamma-\beta^2)}{2\alpha(2\alpha\gamma-\beta^2)},\\
+    s^{MS} &= \frac{\bar{Q}\beta}{2(2\alpha\gamma-\beta^2)},\\
+    Q^{MS} &= \frac{\alpha\gamma\bar{Q}}{2(2\alpha\gamma-\beta^2)},\\
+    \Pi_M^{MS} &= \frac{\gamma\bar{Q}^2}{4(2\alpha\gamma-\beta^2)},\\
+    \Pi_R^{MS} &= \frac{\gamma\bar{Q}^2}{8(2\alpha\gamma-\beta^2)}.
+\end{align*}
+\end{proposition}
+
+The Manufacturer's first-mover advantage is visible in $w^{MS}=\bar{Q}/(2\alpha)$. This wholesale price is independent of $\beta$ and $\gamma$. CSR attractiveness and CSR cost curvature affect the Retailer's follower choices, but they do not change the leader's optimal wholesale-price formula.
+
+This is an important governance insight. Under MS, upstream leadership partly insulates the Manufacturer from the operational details of CSR maturity. The Retailer still adjusts $m$ and $s$, but it does so after the wholesale price has already been set. The Retailer's CSR maturity under MS is exactly one-half of the integrated maturity for the same $(\alpha,\beta,\gamma)$, because $s^{MS}=s^{IN}/2$. Relative to VN, however, the comparison depends on CSR pull: $s^{MS}<s^{VN}$ when $x<1$, while $s^{MS}>s^{VN}$ when $1<x<2$.
+
+\subsection{Retailer Stackelberg (RS) Equilibrium}
+
+In the RS regime, the Retailer commits to $(m,s)$ first. The Manufacturer then observes these choices and sets $w$. Given $(m,s)$, the Manufacturer solves
+\begin{equation*}
+    \max_w\; w\left[\bar{Q}-\alpha(w+m)+\beta s\right].
+\end{equation*}
+The Manufacturer's best response is
+\begin{equation*}
+    w^{BR}(m,s)=\frac{\bar{Q}-\alpha m+\beta s}{2\alpha}.
+\end{equation*}
+Substituting this response into the Retailer's objective and maximizing over $(m,s)$ yields the RS equilibrium.
+
+The RS case reverses the timing. Here the Retailer commits first to its markup and CSR maturity, and the Manufacturer then adjusts the wholesale price. This proposition shows how downstream leadership reallocates margin and changes CSR investment incentives.
+
+\begin{proposition}[Retailer Stackelberg Equilibrium]
+\label{prop:rs}
+Under $4\alpha\gamma-\beta^2>0$, the unique interior RS equilibrium is
+\begin{align*}
+    m^{RS} &= \frac{2\gamma\bar{Q}}{4\alpha\gamma-\beta^2},\\
+    w^{RS} &= \frac{\gamma\bar{Q}}{4\alpha\gamma-\beta^2},\\
+    p^{RS} &= \frac{3\gamma\bar{Q}}{4\alpha\gamma-\beta^2},\\
+    s^{RS} &= \frac{\beta\bar{Q}}{4\alpha\gamma-\beta^2},\\
+    Q^{RS} &= \frac{\alpha\gamma\bar{Q}}{4\alpha\gamma-\beta^2},\\
+    \Pi_M^{RS} &= \frac{\alpha\gamma^2\bar{Q}^2}{(4\alpha\gamma-\beta^2)^2},\\
+    \Pi_R^{RS} &= \frac{\gamma\bar{Q}^2}{2(4\alpha\gamma-\beta^2)}.
+\end{align*}
+\end{proposition}
+
+Retailer leadership shifts margin downstream. By committing to a high markup before the Manufacturer sets $w$, the Retailer induces the Manufacturer to lower its wholesale price to preserve demand. This improves the Retailer's relative position, especially in the baseline region, but it also tends to produce a high final retail price and weak CSR maturity compared with the integrated benchmark.
+
+The CSR implication is mixed. RS gives the Retailer more control over the consumer-facing decision, but the same markup that protects Retailer profit can suppress demand. A smaller demand base reduces the return from CSR maturity. Downstream leadership can therefore protect the party that pays for CSR while still underperforming as a channel-wide CSR governance structure.
+
+\paragraph{Standalone validity of RS.}
+The RS condition is weaker than the all-regime condition used for the main comparisons. After substituting the Manufacturer's best response, the Retailer leader's reduced problem has Hessian
+\begin{equation*}
+    H_R^{RS}=\begin{pmatrix}
+        -\alpha & \beta/2\\
+        \beta/2 & -\gamma
+    \end{pmatrix},
+\end{equation*}
+which is negative definite when
+\begin{equation*}
+    4\alpha\gamma-\beta^2>0.
+\end{equation*}
+Therefore RS is mathematically valid as a standalone game for $0<x<4$. The range $2<x<4$ is not used for cross-regime rankings or for the stage-0 meta-game because the VN, MS, and IN optimization problems fail the second-order condition required for interior maxima under the current model.
+
+% ============================================================
+\section{Integrated CSR Coordination Benchmark}
+\label{sec:in}
+% ============================================================
+
+\subsection{Game-Theoretic Setup}
+
+The integrated benchmark models the Manufacturer and Retailer as a single coordinated channel. In this regime, the wholesale price is not a strategic decision. It is only an internal transfer and therefore cancels out of total channel profit. The integrated channel directly chooses the consumer price $p$ and CSR maturity $s$ to maximize
+\begin{equation*}
+    \Pi_{Total}(p,s)=p(\bar{Q}-\alpha p+\beta s)-\frac12\gamma s^2.
+\end{equation*}
+The first-order conditions are
+\begin{align*}
+    \frac{\partial \Pi_{Total}}{\partial p}&=\bar{Q}-2\alpha p+\beta s=0,\\
+    \frac{\partial \Pi_{Total}}{\partial s}&=\beta p-\gamma s=0.
+\end{align*}
+
+The integrated benchmark removes the internal conflict between the Manufacturer and Retailer. It is not a decentralized equilibrium; instead, it gives the coordinated CSR channel outcome against which the non-cooperative regimes are compared.
+
+\begin{proposition}[Integrated Benchmark]
+\label{prop:in}
+Under $2\alpha\gamma-\beta^2>0$, the unique interior integrated optimum is
+\begin{align*}
+    p^{IN} &= \frac{\bar{Q}\gamma}{2\alpha\gamma-\beta^2},\\
+    s^{IN} &= \frac{\bar{Q}\beta}{2\alpha\gamma-\beta^2},\\
+    Q^{IN} &= \frac{\alpha\gamma\bar{Q}}{2\alpha\gamma-\beta^2},\\
+    \Pi_{Total}^{IN} &= \frac{\gamma\bar{Q}^2}{2(2\alpha\gamma-\beta^2)}.
+\end{align*}
+Under the equal-split normalization, each party receives
+\begin{equation}
+    \Pi_M^{IN}=\Pi_R^{IN}=\frac12\Pi_{Total}^{IN}
+    =\frac{\gamma\bar{Q}^2}{4(2\alpha\gamma-\beta^2)}.
+    \label{eq:pi_in_split}
+\end{equation}
+\end{proposition}
+
+\subsection{Role as a Coordination Benchmark}
+
+The integrated benchmark is the first-best channel outcome in this model. It eliminates double marginalization and internalizes the full demand benefit of CSR maturity. As a result, it delivers the highest CSR maturity, highest demand, and highest total channel profit among the four regimes throughout the all-regime validity domain $0<x<2$.
+
+The benchmark is useful because it shows what the channel would choose if CSR were governed as a shared asset. The coordinated channel sees both sides of the trade-off. It pays the cost of $s$, but it also captures the full demand lift from $s$. Decentralized regimes do not have this property.
+
+The integrated benchmark should not be interpreted as choosing an equilibrium wholesale price or an equilibrium Retailer markup. Once the channel is integrated, $w$ is an internal accounting transfer rather than a strategic market variable. Therefore, cross-regime comparisons involving $w^{IN}$ or $m^{IN}$ are not meaningful unless a separate transfer-pricing convention is imposed. This chapter does not impose such a convention. The integrated regime is compared with the decentralized regimes using the real channel outcomes $p$, $s$, $Q$, $\Pi_M$, $\Pi_R$, and $\Pi_{Total}$.
+
+The equal-split rule in~\eqref{eq:pi_in_split} is a normalization used to compare individual payoffs across regimes. In practice, the integrated CSR surplus could be divided according to bargaining power, contract terms, or cost-sharing rules. Section~\ref{sec:meta_game} returns to this issue when discussing regime choice and alliance frictions.
+
+\subsection{Non-cooperative CSR Strategy Sensitivity Analyses}
+\label{sec:sensitivity}
+
+We study how the primitives of the CSR demand--cost system,
+\[
+Q(p,s)=\overline Q-\alpha p+\beta s,\qquad
+p=w+m,\qquad
+\Pi_M=wQ,\qquad
+\Pi_R=mQ-\tfrac12\gamma s^2,
+\]
+shape equilibrium outcomes under the three decentralized CSR governance structures:
+Vertical Nash (VN), Manufacturer--Stackelberg (MS), and Retailer--Stackelberg (RS).
+
+Let
+\[
+\Delta_2:=2\alpha\gamma-\beta^2,\qquad
+\Delta_3:=3\alpha\gamma-\beta^2,\qquad
+\Delta_4:=4\alpha\gamma-\beta^2,
+\]
+with the denominator terms shown explicitly. Denominator positivity is necessary for the closed-form expressions, but the main comparisons use the common second-order domain in Assumption~6. Since the later cross-regime comparisons use the all-regime domain \(\Delta_2>0\), they focus on the two regions
+\[
+\beta^2<\alpha\gamma
+\qquad\text{and}\qquad
+\alpha\gamma<\beta^2<2\alpha\gamma,
+\]
+we state the comparative statics in a way that is consistent with those regions.
+
+\paragraph{Closed-form equilibrium objects.}\mbox{}\\
+From Sections~\ref{sec:vn}--\ref{sec:in}:
+\[
+\begin{aligned}
+\text{VN:}\quad
+&w^{VN}=\frac{\overline Q\gamma}{\Delta_3},\quad
+m^{VN}=\frac{\overline Q\gamma}{\Delta_3},\quad
+s^{VN}=\frac{\overline Q\beta}{\Delta_3},\\
+&p^{VN}=\frac{2\overline Q\gamma}{\Delta_3},\quad
+Q^{VN}=\frac{\alpha\gamma\overline Q}{\Delta_3},\quad
+\Pi_M^{VN}=\frac{\alpha\gamma^2\overline Q^2}{\Delta_3^2},\quad
+\Pi_R^{VN}=\frac{\gamma\overline Q^2(2\alpha\gamma-\beta^2)}{2\Delta_3^2};
+\\[0.5em]
+\text{MS:}\quad
+&w^{MS}=\frac{\overline Q}{2\alpha},\quad
+m^{MS}=\frac{\gamma\overline Q}{2\Delta_2},\quad
+s^{MS}=\frac{\beta\overline Q}{2\Delta_2},\\
+&p^{MS}=\frac{\overline Q(3\alpha\gamma-\beta^2)}{2\alpha\Delta_2},\quad
+Q^{MS}=\frac{\alpha\gamma\overline Q}{2\Delta_2},\quad
+\Pi_M^{MS}=\frac{\gamma\overline Q^2}{4\Delta_2},\quad
+\Pi_R^{MS}=\frac{\gamma\overline Q^2}{8\Delta_2};
+\\[0.5em]
+\text{RS:}\quad
+&w^{RS}=\frac{\gamma\overline Q}{\Delta_4},\quad
+m^{RS}=\frac{2\gamma\overline Q}{\Delta_4},\quad
+s^{RS}=\frac{\beta\overline Q}{\Delta_4},\\
+&p^{RS}=\frac{3\gamma\overline Q}{\Delta_4},\quad
+Q^{RS}=\frac{\alpha\gamma\overline Q}{\Delta_4},\quad
+\Pi_M^{RS}=\frac{\alpha\gamma^2\overline Q^2}{\Delta_4^2},\quad
+\Pi_R^{RS}=\frac{\gamma\overline Q^2}{2\Delta_4}.
+\end{aligned}
+\]
+
+
+
+\subsubsection{Sensitivity to Price Sensitivity \(\alpha\)}
+
+\begin{figure}[htbp]
+\centering
+
+% Baseline values for normalization
+\def\alphabase{1.0}
+\def\betabase{0.8}
+\def\gammabase{1.0}
+
+\begin{tikzpicture}
+\begin{groupplot}[
+  group style={group size=2 by 2, horizontal sep=1.2cm, vertical sep=2.2cm},
+  myaxis,
+  xmin=0.5, xmax=3.0,
+  xlabel={$\alpha$},
+  samples=180
+]
+
+\nextgroupplot[
+  title={Wholesale price $w$},
+  ylabel={Normalized value}
+]
+\addplot[vn, domain=0.5:3.0] {(3*\alphabase*\gammabase - \betabase^2)/(3*x*\gammabase - \betabase^2)};
+\addlegendentry{VN}
+\addplot[ms, domain=0.5:3.0] {\alphabase/x};
+\addlegendentry{MS}
+\addplot[rs, domain=0.5:3.0] {(4*\alphabase*\gammabase - \betabase^2)/(4*x*\gammabase - \betabase^2)};
+\addlegendentry{RS}
+
+\nextgroupplot[
+  title={Retailer markup $m$}
+]
+\addplot[vn, domain=0.5:3.0] {(3*\alphabase*\gammabase - \betabase^2)/(3*x*\gammabase - \betabase^2)};
+\addplot[ms, domain=0.5:3.0] {(2*\alphabase*\gammabase - \betabase^2)/(2*x*\gammabase - \betabase^2)};
+\addplot[rs, domain=0.5:3.0] {(4*\alphabase*\gammabase - \betabase^2)/(4*x*\gammabase - \betabase^2)};
+
+\nextgroupplot[
+  title={CSR maturity $s$},
+  ylabel={Normalized value}
+]
+\addplot[vn, domain=0.5:3.0] {(3*\alphabase*\gammabase - \betabase^2)/(3*x*\gammabase - \betabase^2)};
+\addplot[ms, domain=0.5:3.0] {(2*\alphabase*\gammabase - \betabase^2)/(2*x*\gammabase - \betabase^2)};
+\addplot[rs, domain=0.5:3.0] {(4*\alphabase*\gammabase - \betabase^2)/(4*x*\gammabase - \betabase^2)};
+
+\nextgroupplot[
+  title={Demand $Q$}
+]
+\addplot[vn, domain=0.5:3.0] {x*(3*\alphabase*\gammabase - \betabase^2)/(\alphabase*(3*x*\gammabase - \betabase^2))};
+\addplot[ms, domain=0.5:3.0] {x*(2*\alphabase*\gammabase - \betabase^2)/(\alphabase*(2*x*\gammabase - \betabase^2))};
+\addplot[rs, domain=0.5:3.0] {x*(4*\alphabase*\gammabase - \betabase^2)/(\alphabase*(4*x*\gammabase - \betabase^2))};
+
+\end{groupplot}
+\end{tikzpicture}
+
+\caption{Sensitivity to price sensitivity \(\alpha\), normalized at the baseline
+\((\alpha,\beta,\gamma)=(1.0,0.8,1.0)\). All decentralized regimes exhibit lower
+wholesale prices, lower markups, lower CSR maturity, and lower demand as consumers
+become more price-sensitive.}
+\label{fig:alpha_sweep}
+\end{figure}
+
+A higher \(\alpha\) makes demand more price-elastic. Across all three decentralized regimes,
+the retail price \(p\), CSR maturity \(s\), realized demand \(Q\), and Manufacturer profit \(\Pi_M\) all decline.
+The Retailer markup \(m\) also declines in all three games.
+
+For the wholesale price, the regime-specific result is:
+\[
+\frac{\partial w^{VN}}{\partial\alpha}<0,\qquad
+\frac{\partial w^{MS}}{\partial\alpha}<0,\qquad
+\frac{\partial w^{RS}}{\partial\alpha}<0.
+\]
+In MS this follows from the particularly simple formula
+\[
+w^{MS}=\frac{\overline Q}{2\alpha},
+\]
+so the Manufacturer's optimal wholesale price falls one-for-one with stronger price sensitivity.
+
+Thus, for operational variables the common sign pattern is
+\[
+\frac{\partial p^g}{\partial\alpha}<0,\qquad
+\frac{\partial m^g}{\partial\alpha}<0,\qquad
+\frac{\partial s^g}{\partial\alpha}<0,\qquad
+\frac{\partial Q^g}{\partial\alpha}<0,\qquad
+\frac{\partial \Pi_M^g}{\partial\alpha}<0,
+\qquad g\in\{VN,MS,RS\}.
+\]
+
+For Retailer profit, MS and RS are unambiguous:
+\[
+\frac{\partial \Pi_R^{MS}}{\partial\alpha}<0,\qquad
+\frac{\partial \Pi_R^{RS}}{\partial\alpha}<0.
+\]
+However, VN is regime-conditional:
+\[
+\frac{\partial \Pi_R^{VN}}{\partial\alpha}
+=
+-\frac{\overline Q^2\gamma^2(3\alpha\gamma-2\beta^2)}{(3\alpha\gamma-\beta^2)^3}.
+\]
+Hence
+\[
+\frac{\partial \Pi_R^{VN}}{\partial\alpha}
+\begin{cases}
+<0, & \beta^2<\tfrac32\alpha\gamma,\\
+>0, & \tfrac32\alpha\gamma<\beta^2<2\alpha\gamma.
+\end{cases}
+\]
+Thus, Retailer profit falls with \(\alpha\) unambiguously in MS and RS. In VN, the sign depends on the strength of the CSR-demand effect.
+
+
+\paragraph{Economic intuition.}
+A larger \(\alpha\) disciplines pricing in every regime. The difference is that under VN,
+the Retailer's profit also reflects strategic rent-sharing with the Manufacturer; when the
+CSR-demand effect is already very strong, the price-disciplining effect of a larger \(\alpha\)
+can partially offset the Retailer's cost burden and may even raise \(\Pi_R^{VN}\).
+
+\subsubsection{Sensitivity to CSR Attractiveness \(\beta\)}
+
+\begin{figure}[htbp]
+\centering
+
+% Here we set alpha = gamma = Qbar = 1 for a clean threshold map in beta
+\def\QbarB{1.0}
+\def\alphaB{1.0}
+\def\gammaB{1.0}
+\def\thone{1.0}              % sqrt(alpha*gamma)
+\def\thtwo{1.154700538}      % sqrt(4/3)
+\def\thmax{1.414213562}      % sqrt(2)
+
+\begin{tikzpicture}
+\begin{groupplot}[
+  group style={group size=2 by 2, horizontal sep=1.2cm, vertical sep=2.2cm},
+  myaxis,
+  xmin=0.05, xmax=1.30,
+  xlabel={$\beta$},
+  samples=220
+]
+
+\nextgroupplot[
+  title={Wholesale price $w$},
+  ylabel={Level},
+  ymax=2
+]
+\addplot[vn, domain=0.05:1.30] {1/(3 - x^2)};
+\addlegendentry{VN}
+\addplot[ms, domain=0.05:1.30] {1/2};
+\addlegendentry{MS}
+\addplot[rs, domain=0.05:1.30] {1/(4 - x^2)};
+\addlegendentry{RS}
+\addplot[thresh] coordinates {(\thone,0) (\thone,2)};
+\addplot[thresh] coordinates {(\thtwo,0) (\thtwo,2)};
+
+\nextgroupplot[
+  title={CSR maturity $s$},
+  ymax=4.5
+]
+\addplot[vn, domain=0.05:1.30] {x/(3 - x^2)};
+\addplot[ms, domain=0.05:1.30] {x/(2*(2 - x^2))};
+\addplot[rs, domain=0.05:1.30] {x/(4 - x^2)};
+\addplot[ineq, domain=0.05:1.30] {x/(2 - x^2)};
+\addplot[thresh] coordinates {(\thone,0) (\thone,4.5)};
+\addplot[thresh] coordinates {(\thtwo,0) (\thtwo,4.5)};
+
+\nextgroupplot[
+  title={Manufacturer profit $\Pi_M$},
+  ylabel={Level},
+  ymax=0.9
+]
+\addplot[vn, domain=0.05:1.30] {1/(3 - x^2)^2};
+\addplot[ms, domain=0.05:1.30] {1/(4*(2 - x^2))};
+\addplot[rs, domain=0.05:1.30] {1/(4 - x^2)^2};
+\addplot[ineq, domain=0.05:1.30] {1/(4*(2 - x^2))};
+\addplot[thresh] coordinates {(\thone,0) (\thone,0.9)};
+\addplot[thresh] coordinates {(\thtwo,0) (\thtwo,0.9)};
+
+\nextgroupplot[
+  title={Retailer profit $\Pi_R$},
+  ymax=1.0
+]
+\addplot[vn, domain=0.05:1.30] {(2 - x^2)/(2*(3 - x^2)^2)};
+\addplot[ms, domain=0.05:1.30] {1/(8*(2 - x^2))};
+\addplot[rs, domain=0.05:1.30] {1/(2*(4 - x^2))};
+\addplot[ineq, domain=0.05:1.30] {1/(4*(2 - x^2))};
+\addplot[thresh] coordinates {(\thone,0) (\thone,1.0)};
+\addplot[thresh] coordinates {(\thtwo,0) (\thtwo,1.0)};
+
+\end{groupplot}
+\end{tikzpicture}
+
+\caption{Sensitivity to CSR attractiveness \(\beta\) with \(\alpha=\gamma=\overline Q=1\).
+The first vertical dashed line marks \(\beta=\sqrt{\alpha\gamma}\), separating the baseline region
+from the high-CSR-pull region. The second marks \(\beta=\sqrt{4\alpha\gamma/3}\), where the
+Retailer-profit ordering between MS and RS flips. The domain is truncated below
+\(\sqrt{2\alpha\gamma}\) to remain in the all-regime validity domain.}
+\label{fig:beta_sweep}
+\end{figure}
+
+A higher \(\beta\) raises the marginal demand payoff from CSR maturity. In all three regimes,
+the Retailer therefore invests more in \(s\), which increases demand \(Q\), the retail price \(p\),
+and Manufacturer profit \(\Pi_M\):
+\[
+\frac{\partial s^g}{\partial\beta}>0,\qquad
+\frac{\partial Q^g}{\partial\beta}>0,\qquad
+\frac{\partial p^g}{\partial\beta}>0,\qquad
+\frac{\partial \Pi_M^g}{\partial\beta}>0,
+\qquad g\in\{VN,MS,RS\}.
+\]
+
+The Retailer markup also rises in every regime:
+\[
+\frac{\partial m^{VN}}{\partial\beta}>0,\qquad
+\frac{\partial m^{MS}}{\partial\beta}>0,\qquad
+\frac{\partial m^{RS}}{\partial\beta}>0.
+\]
+
+For the wholesale price, however, the result is \emph{not} common across games:
+\[
+\frac{\partial w^{VN}}{\partial\beta}>0,\qquad
+\frac{\partial w^{MS}}{\partial\beta}=0,\qquad
+\frac{\partial w^{RS}}{\partial\beta}>0.
+\]
+Thus, larger \(\beta\) raises the wholesale price in VN and RS, but leaves the MS wholesale price unchanged. Under MS, the Manufacturer leader's wholesale price is pinned down by \(w^{MS}=\overline Q/(2\alpha)\), so \(\beta\) affects only the Retailer's follower choices and the induced quantity.
+
+Retailer profit is again regime-specific. In MS and RS:
+\[
+\frac{\partial \Pi_R^{MS}}{\partial\beta}>0,\qquad
+\frac{\partial \Pi_R^{RS}}{\partial\beta}>0.
+\]
+But in VN:
+\[
+\frac{\partial \Pi_R^{VN}}{\partial\beta}
+=
+\frac{\overline Q^2\beta\gamma(\alpha\gamma-\beta^2)}{(3\alpha\gamma-\beta^2)^3},
+\]
+so
+\[
+\frac{\partial \Pi_R^{VN}}{\partial\beta}
+\begin{cases}
+>0, & \beta^2<\alpha\gamma,\\
+<0, & \alpha\gamma<\beta^2<2\alpha\gamma.
+\end{cases}
+\]
+
+\paragraph{Economic intuition.}
+A stronger CSR pull always encourages CSR-maturity investment and expands demand.
+Yet in VN, when \(\beta^2>\alpha\gamma\), part of the extra surplus is competed away through a higher
+wholesale price while the Retailer still bears the CSR cost. As a result, \(s^{VN}\), \(Q^{VN}\),
+and \(\Pi_M^{VN}\) rise with \(\beta\), but \(\Pi_R^{VN}\) can fall.
+
+\subsubsection{Sensitivity to CSR Cost Curvature \(\gamma\)}
+
+\begin{figure}[htbp]
+\centering
+
+% Baseline values for normalization
+\def\alphag{1.0}
+\def\betag{0.8}
+\def\gammag{1.0}
+
+\begin{tikzpicture}
+\begin{groupplot}[
+  group style={group size=2 by 2, horizontal sep=1.2cm, vertical sep=2.2cm},
+  myaxis,
+  xmin=0.5, xmax=3.0,
+  xlabel={$\gamma$},
+  samples=180
+]
+
+\nextgroupplot[
+  title={Wholesale price $w$},
+  ylabel={Normalized value}
+]
+\addplot[vn, domain=0.5:3.0] {x*(3*\alphag*\gammag - \betag^2)/(\gammag*(3*\alphag*x - \betag^2))};
+\addlegendentry{VN}
+\addplot[ms, domain=0.5:3.0] {1};
+\addlegendentry{MS}
+\addplot[rs, domain=0.5:3.0] {x*(4*\alphag*\gammag - \betag^2)/(\gammag*(4*\alphag*x - \betag^2))};
+\addlegendentry{RS}
+
+\nextgroupplot[
+  title={Retailer markup $m$}
+]
+\addplot[vn, domain=0.5:3.0] {x*(3*\alphag*\gammag - \betag^2)/(\gammag*(3*\alphag*x - \betag^2))};
+\addplot[ms, domain=0.5:3.0] {x*(2*\alphag*\gammag - \betag^2)/(\gammag*(2*\alphag*x - \betag^2))};
+\addplot[rs, domain=0.5:3.0] {x*(4*\alphag*\gammag - \betag^2)/(\gammag*(4*\alphag*x - \betag^2))};
+
+\nextgroupplot[
+  title={CSR maturity $s$},
+  ylabel={Normalized value}
+]
+\addplot[vn, domain=0.5:3.0] {(3*\alphag*\gammag - \betag^2)/(3*\alphag*x - \betag^2)};
+\addplot[ms, domain=0.5:3.0] {(2*\alphag*\gammag - \betag^2)/(2*\alphag*x - \betag^2)};
+\addplot[rs, domain=0.5:3.0] {(4*\alphag*\gammag - \betag^2)/(4*\alphag*x - \betag^2)};
+
+\nextgroupplot[
+  title={Demand $Q$}
+]
+\addplot[vn, domain=0.5:3.0] {x*(3*\alphag*\gammag - \betag^2)/(\gammag*(3*\alphag*x - \betag^2))};
+\addplot[ms, domain=0.5:3.0] {x*(2*\alphag*\gammag - \betag^2)/(\gammag*(2*\alphag*x - \betag^2))};
+\addplot[rs, domain=0.5:3.0] {x*(4*\alphag*\gammag - \betag^2)/(\gammag*(4*\alphag*x - \betag^2))};
+
+\end{groupplot}
+\end{tikzpicture}
+
+\caption{Sensitivity to CSR cost curvature \(\gamma\), normalized at the baseline
+\((\alpha,\beta,\gamma)=(1.0,0.8,1.0)\). Higher CSR cost curvature reduces
+markups, CSR maturity, and demand. The MS wholesale-price curve is flat because
+\(w^{MS}\) is independent of \(\gamma\).}
+\label{fig:gamma_sweep}
+\end{figure}
+
+A higher \(\gamma\) makes CSR maturity investment more expensive at the margin. In all three regimes,
+the Retailer cuts \(s\), which lowers demand and weakens pricing power:
+\[
+\frac{\partial s^g}{\partial\gamma}<0,\qquad
+\frac{\partial Q^g}{\partial\gamma}<0,\qquad
+\frac{\partial p^g}{\partial\gamma}<0,\qquad
+\frac{\partial m^g}{\partial\gamma}<0,\qquad
+\frac{\partial \Pi_M^g}{\partial\gamma}<0,
+\qquad g\in\{VN,MS,RS\}.
+\]
+For the wholesale price:
+\[
+\frac{\partial w^{VN}}{\partial\gamma}<0,\qquad
+\frac{\partial w^{MS}}{\partial\gamma}=0,\qquad
+\frac{\partial w^{RS}}{\partial\gamma}<0.
+\]
+Thus, higher \(\gamma\) lowers the wholesale price in VN and RS, while the MS wholesale price remains unchanged.
+
+Retailer profit is again unambiguous in MS and RS:
+\[
+\frac{\partial \Pi_R^{MS}}{\partial\gamma}<0,\qquad
+\frac{\partial \Pi_R^{RS}}{\partial\gamma}<0.
+\]
+For VN:
+\[
+\frac{\partial \Pi_R^{VN}}{\partial\gamma}
+=
+-\frac{\overline Q^2\beta^2(\alpha\gamma-\beta^2)}{2(3\alpha\gamma-\beta^2)^3},
+\]
+hence
+\[
+\frac{\partial \Pi_R^{VN}}{\partial\gamma}
+\begin{cases}
+<0, & \beta^2<\alpha\gamma,\\
+>0, & \alpha\gamma<\beta^2<2\alpha\gamma.
+\end{cases}
+\]
+
+\paragraph{Economic intuition.}
+Higher \(\gamma\) discourages CSR maturity in every regime. But under VN, when the
+CSR-demand effect is already very strong, a reduction in \(\gamma\) induces more CSR
+investment and also strengthens the Manufacturer's incentive to raise \(w\). Because the Retailer
+does not internalize the full channel gain from this interaction, its own equilibrium profit may
+move opposite to the usual comparative-static intuition. This is a governance issue, not only a cost issue.
+
+\subsection{Integrated Benchmark Sensitivity Analysis}
+
+For the integrated benchmark,
+\[
+    p^{IN}=\frac{\overline Q\gamma}{2\alpha\gamma-\beta^2},
+    \qquad
+    s^{IN}=\frac{\overline Q\beta}{2\alpha\gamma-\beta^2}.
+\]
+The signs are direct. Higher price sensitivity lowers both the coordinated retail price and CSR maturity:
+\[
+    \frac{\partial p^{IN}}{\partial \alpha}<0,
+    \qquad
+    \frac{\partial s^{IN}}{\partial \alpha}<0.
+\]
+A stronger CSR pull raises both variables:
+\[
+    \frac{\partial p^{IN}}{\partial \beta}>0,
+    \qquad
+    \frac{\partial s^{IN}}{\partial \beta}>0.
+\]
+A larger market size scales up both price and CSR maturity, while higher CSR cost curvature lowers both:
+\[
+    \frac{\partial p^{IN}}{\partial \overline Q}>0,
+    \quad
+    \frac{\partial s^{IN}}{\partial \overline Q}>0,
+    \qquad
+    \frac{\partial p^{IN}}{\partial \gamma}<0,
+    \quad
+    \frac{\partial s^{IN}}{\partial \gamma}<0.
+\]
+These signs confirm that the integrated channel internalizes the full demand benefit of CSR maturity. It invests more aggressively than decentralized regimes, but it still reduces maturity when consumers become more price-sensitive or when CSR maturity becomes more costly. Coordination does not remove economics. It removes the internal misalignment over who pays and who benefits.
+
+\subsubsection{Overall Insights}
+
+\paragraph{Figure-based interpretation of the comparative statics.}
+Figures~\ref{fig:alpha_sweep}--\ref{fig:gamma_sweep} convert the closed-form equilibrium
+expressions into quantitative parameter sweeps. The plots are not only comparative-statics checks. They show how CSR maturity travels through the Manufacturer--Retailer relationship under Vertical Nash (VN), Manufacturer--Stackelberg (MS), Retailer--Stackelberg (RS), and, where relevant, the integrated benchmark (IN).
+
+Figure~\ref{fig:alpha_sweep} shows that an increase in price sensitivity $\alpha$ compresses
+the entire decentralized channel. Wholesale prices, Retailer markups, CSR maturity,
+and market demand all decline as consumers become more price-elastic. The effect is
+particularly strong under MS for the wholesale price because the Manufacturer leader sets
+$w^{MS}=\overline Q/(2\alpha)$. Thus, stronger price discipline reduces both
+double marginalization and the incentive to invest in CSR maturity.
+
+Figure~\ref{fig:beta_sweep} reveals that the CSR-attractiveness parameter $\beta$
+is the most structurally important primitive. As $\beta$ increases, all regimes raise
+CSR maturity $s$, and the integrated benchmark reacts most strongly because it
+internalizes the full demand benefit of CSR-driven maturity. The wholesale-price response
+is not common across decentralized games: $w^{VN}$ and $w^{RS}$ increase with $\beta$,
+whereas $w^{MS}$ remains flat because it is independent of $\beta$. The figure also makes
+the threshold structure transparent. The first dashed line,
+$\beta=\sqrt{\alpha\gamma}$, separates the moderate CSR-pull region from the high-CSR-pull
+region. The second dashed line, $\beta=\sqrt{4\alpha\gamma/3}$, marks the point at which
+Retailer profit under Manufacturer leadership overtakes Retailer profit under Retailer
+leadership. Stronger CSR appeal can therefore reverse decentralized profit rankings even though it raises total CSR maturity.
+
+Figure~\ref{fig:gamma_sweep} shows that higher CSR cost curvature $\gamma$
+reduces maturity investment in every decentralized regime. As the marginal cost of
+CSR maturity steepens, the Retailer optimally cuts $s$, which weakens demand and
+compresses equilibrium markups. The wholesale-price panel again highlights a regime
+exception: under MS the wholesale price is flat in $\gamma$, while under VN and RS it
+falls with $\gamma$. This follows from the MS equilibrium formula
+$w^{MS}=\overline Q/(2\alpha)$, which depends on $\alpha$ but not on the cost curvature of
+CSR investment. Upstream leadership can therefore be insensitive to the Retailer's CSR cost burden.
+
+Taken together, the quantitative figures sharpen the main message of the model. Most
+operational outcomes move in the same intuitive direction when $\alpha$, $\beta$, or
+$\gamma$ change, but the game structure still matters for how these shocks are transmitted
+through the channel. Manufacturer leadership isolates the wholesale price
+from CSR parameters. CSR attractiveness $\beta$ can trigger
+discrete changes in profit ranking once $\beta^2/(\alpha\gamma)$ crosses the threshold
+identified in Section~\ref{sec:cross_regime}.
+
+Accordingly, most operational variables share the same monotone responses across VN, MS, and RS, while wholesale pricing under MS and Retailer profit under VN remain regime-specific.
+
+
+
+% ============================================================
+\section{Cross-Regime and Parameter Regimes Comparison}
+\label{sec:cross_regime}
+% ============================================================
+
+\subsection{Notation and Parameter Regimes}
+
+Define the normalized CSR-pull index and denominator terms as
+\[
+    x:=\frac{\beta^2}{\alpha\gamma},
+    \qquad
+    \Delta_k:=k\alpha\gamma-\beta^2.
+\]
+
+The maintained all-regime validity condition $2\alpha\gamma-\beta^2>0$ is equivalent to $0<x<2$.
+
+Two parameter regions are used for the cross-regime comparison:
+\begin{itemize}
+    \item \textbf{Baseline region} ($0<x<1$, equivalently $\beta^2<\alpha\gamma$): consumer valuation of CSR maturity is moderate relative to price sensitivity and CSR cost curvature.
+    \item \textbf{High-CSR-pull region} ($1<x<2$, equivalently $\alpha\gamma<\beta^2<2\alpha\gamma$): consumer valuation of CSR maturity is strong, but the model still has interior solutions.
+\end{itemize}
+
+Table~\ref{tab:equilibrium-summary} summarizes the equilibrium outcomes. The integrated regime reports only real channel outcomes. It does not report $w^{IN}$ or $m^{IN}$ because wholesale price and Retailer markup are not strategic variables under integration. The table is useful because it shows where CSR value enters each regime. In every formula, $\beta$ expands the demand return from CSR maturity, while $\gamma$ limits that maturity through convex cost.
+
+\begin{table}[htbp]
+\centering
+\small
+\renewcommand{\arraystretch}{1.45}
+\setlength{\tabcolsep}{4pt}
+\caption{Equilibrium Outcomes Across CSR Governance Regimes}
+\label{tab:equilibrium-summary}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Metric} & \textbf{VN} & \textbf{MS} & \textbf{RS} & \textbf{IN} \\
+\midrule
+Retail price $p^*$ &
+$\displaystyle \frac{2\bar Q\gamma}{\Delta_3}$ &
+$\displaystyle \frac{\bar Q(3\alpha\gamma-\beta^2)}{2\alpha\Delta_2}$ &
+$\displaystyle \frac{3\bar Q\gamma}{\Delta_4}$ &
+$\displaystyle \frac{\bar Q\gamma}{\Delta_2}$ \\[6pt]
+CSR maturity $s^*$ &
+$\displaystyle \frac{\bar Q\beta}{\Delta_3}$ &
+$\displaystyle \frac{\bar Q\beta}{2\Delta_2}$ &
+$\displaystyle \frac{\bar Q\beta}{\Delta_4}$ &
+$\displaystyle \frac{\bar Q\beta}{\Delta_2}$ \\[6pt]
+Demand $Q^*$ &
+$\displaystyle \frac{\alpha\gamma\bar Q}{\Delta_3}$ &
+$\displaystyle \frac{\alpha\gamma\bar Q}{2\Delta_2}$ &
+$\displaystyle \frac{\alpha\gamma\bar Q}{\Delta_4}$ &
+$\displaystyle \frac{\alpha\gamma\bar Q}{\Delta_2}$ \\[6pt]
+Manufacturer profit $\Pi_M^*$ &
+$\displaystyle \frac{\alpha\bar Q^2\gamma^2}{\Delta_3^2}$ &
+$\displaystyle \frac{\gamma\bar Q^2}{4\Delta_2}$ &
+$\displaystyle \frac{\alpha\gamma^2\bar Q^2}{\Delta_4^2}$ &
+$\displaystyle \frac{\gamma\bar Q^2}{4\Delta_2}$ \\[8pt]
+Retailer profit $\Pi_R^*$ &
+$\displaystyle \frac{\gamma\bar Q^2(2\alpha\gamma-\beta^2)}{2\Delta_3^2}$ &
+$\displaystyle \frac{\gamma\bar Q^2}{8\Delta_2}$ &
+$\displaystyle \frac{\gamma\bar Q^2}{2\Delta_4}$ &
+$\displaystyle \frac{\gamma\bar Q^2}{4\Delta_2}$ \\[8pt]
+Total profit $\Pi_T^*$ &
+$\displaystyle \frac{\gamma\bar Q^2(4\alpha\gamma-\beta^2)}{2\Delta_3^2}$ &
+$\displaystyle \frac{3\gamma\bar Q^2}{8\Delta_2}$ &
+$\displaystyle \frac{\gamma\bar Q^2(6\alpha\gamma-\beta^2)}{2\Delta_4^2}$ &
+$\displaystyle \frac{\gamma\bar Q^2}{2\Delta_2}$ \\
+\bottomrule
+\end{tabular}
+\vspace{0.4em}
+\begin{minipage}{0.95\textwidth}
+\footnotesize
+\textit{Note:} $\Delta_k=k\alpha\gamma-\beta^2$. IN Manufacturer and Retailer profits use the equal-split normalization in~\eqref{eq:pi_in_split}. No equilibrium $w^{IN}$ or $m^{IN}$ is reported because the wholesale price is an internal transfer under integration. The smaller denominators under stronger CSR pull show how consumer CSR valuation amplifies prices, maturity, demand, and profits.
+\end{minipage}
+\end{table}
+
+Table~\ref{tab:rankings} gives the main rankings implied by Table~\ref{tab:equilibrium-summary}. It should be read as a governance comparison. The rankings show which structure best converts consumer CSR pull into maturity, demand, and profit.
+
+\begin{table}[htbp]
+\centering
+\scriptsize
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{3pt}
+\caption{Equilibrium Rankings Across CSR Governance Regimes}
+\label{tab:rankings}
+\begin{tabular}{lll}
+\toprule
+\textbf{Variable} & \textbf{Baseline ($0<x<1$)} & \textbf{High CSR pull ($1<x<2$)} \\
+\midrule
+Retail price $p^*$ & $p^{RS}>p^{MS}>p^{VN}>p^{IN}$ & $p^{IN}>p^{MS}>p^{VN}>p^{RS}$ \\
+CSR maturity $s^*$ & $s^{IN}>s^{VN}>s^{MS}>s^{RS}$ & $s^{IN}>s^{MS}>s^{VN}>s^{RS}$ \\
+Demand $Q^*$ & $Q^{IN}>Q^{VN}>Q^{MS}>Q^{RS}$ & $Q^{IN}>Q^{MS}>Q^{VN}>Q^{RS}$ \\
+Manufacturer profit $\Pi_M^*$ & $\Pi_M^{IN}=\Pi_M^{MS}>\Pi_M^{VN}>\Pi_M^{RS}$ & Same \\
+Retailer profit $\Pi_R^*$ & $\Pi_R^{IN}>\Pi_R^{RS}>\Pi_R^{VN}>\Pi_R^{MS}$ & See note \\
+Total profit $\Pi_T^*$ & $\Pi_T^{IN}>\Pi_T^{VN}>\Pi_T^{MS}>\Pi_T^{RS}$ & $\Pi_T^{IN}>\Pi_T^{MS}>\Pi_T^{VN}>\Pi_T^{RS}$ \\
+\bottomrule
+\multicolumn{3}{l}{\footnotesize Note: Under high CSR pull, $\Pi_R^{IN}>\Pi_R^{RS}>\Pi_R^{MS}>\Pi_R^{VN}$ if $1<x<4/3$,} \\
+\multicolumn{3}{l}{\footnotesize while $\Pi_R^{IN}>\Pi_R^{MS}>\Pi_R^{RS}>\Pi_R^{VN}$ if $4/3<x<2$.} \\
+\end{tabular}
+\end{table}
+
+\subsection{Retail Price, Wholesale Price, and Retail Markup}
+\label{sec:wm-comparison}
+
+The consumer price ranking changes sharply across the two parameter regions. In the baseline region,
+\begin{equation*}
+    p^{RS}>p^{MS}>p^{VN}>p^{IN}.
+\end{equation*}
+Retailer leadership produces the highest consumer price because the Retailer commits to an aggressive markup before the Manufacturer chooses $w$. Manufacturer leadership produces the second-highest price because the Manufacturer uses its timing advantage to raise the wholesale price, leaving the Retailer to adjust downstream. VN is more moderate because neither party has first-mover power. Integration produces the lowest price in the baseline region because it eliminates double marginalization.
+
+In the high-CSR-pull region, the ranking reverses at the top and bottom:
+\begin{equation*}
+    p^{IN}>p^{MS}>p^{VN}>p^{RS}.
+\end{equation*}
+The integrated channel no longer uses coordination primarily to lower price. Instead, it invests heavily in CSR maturity and charges a CSR premium that consumers are willing to support. This is why the integrated retail price becomes the highest when $1<x<2$.
+
+Wholesale prices and markups are compared only across the decentralized regimes. Under integration, $w$ and $m$ are not equilibrium decisions. In the baseline region,
+\begin{equation*}
+    w^{MS}>w^{VN}>w^{RS},
+    \qquad
+    m^{RS}>m^{VN}>m^{MS}.
+\end{equation*}
+Thus upstream leadership raises the wholesale price, while downstream leadership raises the Retailer markup.
+
+In the high-CSR-pull region,
+\begin{equation*}
+    w^{VN}>w^{MS}>w^{RS}.
+\end{equation*}
+The markup ranking becomes threshold-dependent:
+\begin{equation*}
+    m^{RS}>m^{MS}>m^{VN}\quad \text{if }1<x<\frac43,
+    \qquad
+    m^{MS}>m^{RS}>m^{VN}\quad \text{if }\frac43<x<2.
+\end{equation*}
+At $x=4/3$, $m^{MS}=m^{RS}$. This threshold also appears in the Retailer-profit comparison.
+
+\subsection{CSR Maturity and Demand}
+\label{sec:sD-comparison}
+
+For CSR maturity, integration is always highest and RS is always lowest. The middle ranking changes across parameter regions:
+\begin{align*}
+    s^{IN}>s^{VN}>s^{MS}>s^{RS}, \qquad &0<x<1,\\
+    s^{IN}>s^{MS}>s^{VN}>s^{RS}, \qquad &1<x<2.
+\end{align*}
+The same ranking applies to demand:
+\begin{align*}
+    Q^{IN}>Q^{VN}>Q^{MS}>Q^{RS}, \qquad &0<x<1,\\
+    Q^{IN}>Q^{MS}>Q^{VN}>Q^{RS}, \qquad &1<x<2.
+\end{align*}
+
+The intuition is direct. The integrated channel internalizes the full benefit of CSR maturity and therefore invests the most. RS performs worst because the high downstream markup suppresses demand and weakens the marginal return to CSR maturity. The comparison between VN and MS depends on CSR pull. When $x<1$, the simultaneous VN outcome supports more CSR maturity than Manufacturer leadership. When $x>1$, the CSR-demand effect is strong enough that MS overtakes VN in both CSR maturity and demand.
+
+\subsection{Profit Comparisons}
+\label{sec:profit-comparison}
+
+\paragraph{Manufacturer profit.}
+Under the equal-split normalization and before the stage-0 fixed-cost tie-break, Manufacturer profit satisfies
+\begin{equation*}
+    \Pi_M^{IN}=\Pi_M^{MS}>\Pi_M^{VN}>\Pi_M^{RS}
+\end{equation*}
+throughout $0<x<2$. Manufacturer leadership and integration are therefore best for the Manufacturer at the operational-profit level. The Manufacturer benefits from strong wholesale control and from coordinated CSR value creation. Section~\ref{sec:meta_game} introduces a small fixed-cost tie-break that makes integration strictly preferred to MS in the regime-choice game.
+
+\paragraph{Retailer profit.}
+The Retailer always prefers the equal-split integrated payoff to any decentralized payoff. Among decentralized regimes, the ranking depends on $x$. In the baseline region,
+\begin{equation*}
+    \Pi_R^{IN}>\Pi_R^{RS}>\Pi_R^{VN}>\Pi_R^{MS}.
+\end{equation*}
+Retailer leadership is the best decentralized regime because it lets the Retailer capture a larger margin. That margin helps compensate for the CSR maturity cost borne downstream.
+
+In the high-CSR-pull region, VN becomes the Retailer's worst outcome. The comparison between RS and MS flips at $x=4/3$:
+\begin{align*}
+    \Pi_R^{IN}>\Pi_R^{RS}>\Pi_R^{MS}>\Pi_R^{VN},
+    \qquad &1<x<\frac43,\\
+    \Pi_R^{IN}>\Pi_R^{MS}>\Pi_R^{RS}>\Pi_R^{VN},
+    \qquad &\frac43<x<2.
+\end{align*}
+When CSR pull is very strong, the higher demand generated under MS can compensate the Retailer for its lower markup. The Retailer may then prefer a Manufacturer-led structure to Retailer leadership because the CSR program creates enough demand to offset weaker downstream pricing power.
+
+\paragraph{Total channel profit.}
+The integrated benchmark is always first-best in total channel profit. The second-best decentralized regime, however, depends on the parameter region. Using Table~\ref{tab:equilibrium-summary},
+\begin{equation*}
+    \Pi_T^{MS}-\Pi_T^{VN}
+    =\frac{\bar Q^2(5-x)(x-1)}{8\alpha(2-x)(3-x)^2}.
+\end{equation*}
+Since $0<x<2$, the sign is determined by $x-1$. Therefore,
+\begin{align*}
+    \Pi_T^{IN}>\Pi_T^{VN}>\Pi_T^{MS}>\Pi_T^{RS},
+    \qquad &0<x<1,\\
+    \Pi_T^{IN}>\Pi_T^{MS}>\Pi_T^{VN}>\Pi_T^{RS},
+    \qquad &1<x<2.
+\end{align*}
+This correction matters economically. In the baseline region, Manufacturer leadership benefits the Manufacturer individually but does not maximize decentralized total channel profit. VN is the better decentralized structure for total profit. In the high-CSR-pull region, MS becomes the second-best structure because the stronger demand response to CSR maturity makes Manufacturer-led pricing more effective at generating volume and surplus. The CSR implication is that the preferred decentralized governance mode depends on how strongly consumers reward credible CSR.
+
+\subsection{Synthesis and Policy Insights}
+
+Three implications follow from the corrected rankings.
+
+First, integration is always first-best for total profit, CSR maturity, and demand. This does not mean that integration always produces the lowest retail price. It does so in the baseline region, but in the high-CSR-pull region the integrated channel optimally invests more in CSR maturity and charges a CSR premium. A high coordinated price can therefore be consistent with a stronger CSR offering.
+
+Second, leadership mainly redistributes surplus when CSR pull is moderate. Under $0<x<1$, RS benefits the Retailer, MS benefits the Manufacturer, and VN generates higher total decentralized profit than MS. Coordination mechanisms such as revenue sharing, two-part tariffs, or joint CSR-investment contracts are therefore needed if the goal is to raise both CSR performance and total surplus.
+
+Third, strong CSR pull changes the decentralized ranking. When $1<x<2$, MS overtakes VN in CSR maturity, demand, and total channel profit. This does not eliminate the value of integration. It shows that upstream leadership can become less harmful, and sometimes relatively efficient, when consumers strongly reward CSR maturity.
+
+% ============================================================
+\section{Endogenous Regime Choice: The Stage-0 Meta-Game}
+\label{sec:meta_game}
+% ============================================================
+
+\subsection{Motivation and Game Structure}
+
+The previous sections treat VN, MS, RS, and IN as exogenously assigned regimes. In practice, however, CSR governance is often chosen before operational decisions are made. Before setting prices and CSR maturity, the Manufacturer and Retailer can decide whether to coordinate or to compete for leadership.
+
+Stage 0 is modeled as a simultaneous two-action game. Each player chooses
+\begin{equation*}
+    a_i\in\{C,L\},\qquad i\in\{M,R\},
+\end{equation*}
+where $C$ means coordinate and $L$ means attempt to lead. The Stage-0 action profile determines the Stage-1 operating regime:
+\begin{equation*}
+    (C,C)\mapsto IN,
+    \qquad
+    (L,C)\mapsto MS,
+    \qquad
+    (C,L)\mapsto RS,
+    \qquad
+    (L,L)\mapsto VN.
+\end{equation*}
+If both parties coordinate, the integrated benchmark is implemented. If exactly one party insists on leadership while the other is willing to coordinate, the insistent party becomes the Stackelberg leader. If both insist on leadership, no party concedes and the channel defaults to simultaneous play. This maps directly to CSR practice. The firms must decide whether the CSR program is a joint responsibility or a platform for bargaining power.
+
+\subsection{Payoffs with a Strict Fixed-Cost Tie-Break}
+
+Let $\Pi_i^g(0)$ denote the operational profit of player $i\in\{M,R\}$ in regime $g\in\{VN,MS,RS,IN\}$ before any fixed regime-choice cost. Under the equal-split normalization,
+\begin{equation*}
+    \Pi_M^{IN}(0)=\Pi_M^{MS}(0).
+\end{equation*}
+This equality creates a knife-edge indifference for the Manufacturer between coordination and Manufacturer leadership.
+
+To obtain a strict and economically interpretable Stage-0 ranking, introduce a small fixed operating overhead $F>0$ associated with operating without an alliance. This overhead can represent duplicated compliance effort, monitoring cost, auditing cost, or partner-coordination cost. In a CSR context, it captures the extra friction of proving responsibility without a shared system. In non-cooperative regimes, the Manufacturer bears the overhead:
+\begin{equation*}
+    \Pi_M^g(F)=\Pi_M^g(0)-F,
+    \qquad g\in\{VN,MS,RS\}.
+\end{equation*}
+Under integration, the overhead is shared or partly avoided:
+\begin{equation*}
+    \Pi_M^{IN}(F)=\Pi_M^{IN}(0)-\frac{F}{2},
+    \qquad
+    \Pi_R^{IN}(F)=\Pi_R^{IN}(0)-\frac{F}{2}.
+\end{equation*}
+Therefore,
+\begin{equation*}
+    \Pi_M^{IN}(F)-\Pi_M^{MS}(F)=\frac{F}{2}>0.
+\end{equation*}
+The tie-break affects only Stage-0 payoffs. It does not change the Stage-1 first-order conditions or the operating policies derived above. We take $F$ to be small enough that it does not overturn the Retailer's strict preference for the equal-split integrated payoff over decentralized outcomes.
+
+A more general version allows a Manufacturer bargaining share $\theta\in(0,1)$ and an alliance implementation cost $\kappa\geq 0$:
+\begin{align*}
+    \Pi_M^{IN} &= \theta\left(\Pi_{Total}^{IN}(0)-\kappa\right)-\frac{F}{2},\\
+    \Pi_R^{IN} &= (1-\theta)\left(\Pi_{Total}^{IN}(0)-\kappa\right)-\frac{F}{2}.
+\end{align*}
+The equal-split case used in the baseline corresponds to $\theta=1/2$ and $\kappa=0$.
+
+\subsection{Preference Rankings}
+
+With the strict fixed-cost tie-break, the Manufacturer's ranking is
+\begin{equation*}
+    IN\succ MS\succ VN\succ RS.
+\end{equation*}
+The Retailer's ranking depends on $x$:
+\begin{align*}
+    IN\succ RS\succ VN\succ MS, \qquad &0<x<1,\\
+    IN\succ RS\succ MS\succ VN, \qquad &1<x<\frac43,\\
+    IN\succ MS\succ RS\succ VN, \qquad &\frac43<x<2.
+\end{align*}
+These rankings follow from the profit comparisons in Section~\ref{sec:profit-comparison}.
+
+\subsection{Normal-Form Game and Equilibrium Characterization}
+
+\paragraph{Baseline region ($0<x<1$).}
+Using ordinal payoffs, where 4 is best and 1 is worst for each player, the baseline Stage-0 game is
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{c|cc}
+ & $R:C$ & $R:L$\\ \hline
+$M:C$ & $(4,4)$ (IN) & $(1,3)$ (RS)\\
+$M:L$ & $(3,1)$ (MS) & $(2,2)$ (VN)\\
+\end{tabular}
+\end{center}
+There are two pure-strategy Nash equilibria:
+\begin{equation*}
+    \mathcal{NE}=\{(C,C),(L,L)\}.
+\end{equation*}
+The coordinated equilibrium $(C,C)$ is Pareto superior. The inefficient equilibrium $(L,L)$ is a coordination failure: both parties attempt to lead, neither concedes, and the channel falls back to VN.
+
+\paragraph{High-CSR-pull region ($1<x<4/3$).}
+The Retailer's VN payoff becomes worse than its MS payoff. The ordinal game is
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{c|cc}
+ & $R:C$ & $R:L$\\ \hline
+$M:C$ & $(4,4)$ (IN) & $(1,3)$ (RS)\\
+$M:L$ & $(3,2)$ (MS) & $(2,1)$ (VN)\\
+\end{tabular}
+\end{center}
+The unique pure-strategy Nash equilibrium is
+\begin{equation*}
+    \mathcal{NE}=\{(C,C)\}.
+\end{equation*}
+The Retailer chooses $C$ whether the Manufacturer chooses $C$ or $L$, because coordination or Manufacturer leadership is preferable to the VN fallback.
+
+\paragraph{High-CSR-pull region ($4/3<x<2$).}
+When CSR pull is even stronger, the Retailer prefers MS to RS. The ordinal game is
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{c|cc}
+ & $R:C$ & $R:L$\\ \hline
+$M:C$ & $(4,4)$ (IN) & $(1,2)$ (RS)\\
+$M:L$ & $(3,3)$ (MS) & $(2,1)$ (VN)\\
+\end{tabular}
+\end{center}
+Again, the unique pure-strategy Nash equilibrium is
+\begin{equation*}
+    \mathcal{NE}=\{(C,C)\}.
+\end{equation*}
+
+This result corrects the weak-equilibrium ambiguity that would arise without the fixed-cost tie-break. If $F=0$ and the equal-split rule is maintained, the Manufacturer is indifferent between IN and MS, so $(L,C)$ can survive as a weak equilibrium in the high-CSR-pull region. Under the maintained strict tie-break $F>0$, however, the Manufacturer strictly prefers IN to MS when the Retailer chooses $C$, so $(L,C)$ is not a Nash equilibrium.
+
+\subsection{Why the Regime-Choice Layer Matters}
+
+The Stage-0 game turns channel structure into an equilibrium object. Under moderate CSR pull, the game has the structure of a stag hunt: the coordinated outcome is best for both parties, but mutual attempts to lead can trap the channel in the inferior VN regime. Under high CSR pull, the Retailer's incentive to avoid VN becomes stronger, and the strict fixed-cost tie-break selects coordination as the unique pure-strategy equilibrium.
+
+The managerial implication is direct. Coordination can fail even when it is jointly efficient, especially when each party fears that the other will attempt to lead. Lightweight coordination devices--shared CSR standards, joint investment plans, common compliance systems, data-sharing agreements, and credible pre-play commitments--can help select $(C,C)$.
+
+The policy implication is also clear. If regulators want higher CSR maturity and higher total surplus, reducing the transaction cost of vertical collaboration can be as valuable as subsidizing CSR investment directly. In the generalized sharing model, $(C,C)$ remains a Nash equilibrium when both parties prefer coordination to unilateral deviation:
+\begin{align*}
+    \theta\left(\Pi_{Total}^{IN}(0)-\kappa\right)-\frac{F}{2}
+    &\geq \Pi_M^{MS}(0)-F,\\
+    (1-\theta)\left(\Pi_{Total}^{IN}(0)-\kappa\right)-\frac{F}{2}
+    &\geq \Pi_R^{RS}(0).
+\end{align*}
+Lowering the alliance friction $\kappa$ makes these inequalities easier to satisfy and therefore makes coordination more stable.
+
+\section{Use Case: CSR-Driven EV Battery Take-Back and Recycling}
+\label{sec:ch3_csr_usecase}
+
+The model can be read as a CSR-driven EV battery take-back program. The Manufacturer sells EVs through a Retailer. The Manufacturer faces brand-level, regulatory, and material-recovery pressure to support responsible battery end-of-life management. The Retailer is the consumer-facing actor. It makes the recycling promise visible at the point of sale and during after-sales service.
+
+In this setting, $s$ is not a generic environmental image variable. It is the maturity of the take-back system. A higher $s$ means clearer return instructions, safer battery handling, better traceability, stronger coordination with recycling partners, and more credible information for consumers. These activities increase consumer trust and raise demand through $\beta s$. They also require training, tracking, storage, safety procedures, and partner coordination. Those costs are represented by $\frac12\gamma s^2$.
+
+The Manufacturer and Retailer therefore face a governance choice before they choose prices and maturity. They can coordinate and treat the take-back program as a shared CSR responsibility. Or one party can attempt to lead and protect its own margin first. If both parties try to lead, the channel falls back to simultaneous non-cooperative play. Figure~\ref{fig:ch3_csr_governance_usecase} translates this logic into the EV battery take-back setting.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+  every node/.style={font=\small},
+  decision/.style={draw, rounded corners=2pt, align=center, text width=3.3cm, minimum height=0.9cm, fill=blue!5},
+  mapbox/.style={draw, rounded corners=2pt, align=left, text width=8.2cm, fill=gray!6, inner sep=7pt},
+  regime/.style={draw, rounded corners=2pt, align=center, text width=2.45cm, minimum height=1.05cm, fill=green!7},
+  outcome/.style={draw, rounded corners=2pt, align=center, text width=10.3cm, fill=orange!8, inner sep=7pt},
+  arrow/.style={-{Latex[length=2.5mm]}, thick}
+]
+\node[decision] (mchoice) at (-2.35,0) {Manufacturer\\Stage-0 choice\\ \(C\) or \(L\)};
+\node[decision] (rchoice) at (2.35,0) {Retailer\\Stage-0 choice\\ \(C\) or \(L\)};
+
+\node[mapbox] (mapping) at (0,-1.65) {
+\textbf{Governance mapping}\\
+\((C,C)\rightarrow\) IN: shared CSR take-back responsibility\\
+\((L,C)\rightarrow\) MS: Manufacturer-led channel\\
+\((C,L)\rightarrow\) RS: Retailer-led channel\\
+\((L,L)\rightarrow\) VN: leadership conflict and simultaneous play
+};
+
+\node[regime] (in) at (-4.35,-4.05) {IN\\coordinated\\CSR channel};
+\node[regime] (ms) at (-1.45,-4.05) {MS\\upstream\\leadership};
+\node[regime] (rs) at (1.45,-4.05) {RS\\downstream\\leadership};
+\node[regime] (vn) at (4.35,-4.05) {VN\\non-cooperative\\fallback};
+
+\node[outcome] (outcome) at (0,-5.85) {
+\textbf{Take-back outcomes:} CSR maturity \(s\), consumer trust, demand \(Q\), retail price \(p\), and profit allocation between Manufacturer and Retailer
+};
+
+\draw[arrow] (mchoice.south) -- (mapping.north);
+\draw[arrow] (rchoice.south) -- (mapping.north);
+\draw[arrow] (mapping.south) -- (in.north);
+\draw[arrow] (mapping.south) -- (ms.north);
+\draw[arrow] (mapping.south) -- (rs.north);
+\draw[arrow] (mapping.south) -- (vn.north);
+\draw[arrow] (in.south) -- (outcome.north);
+\draw[arrow] (ms.south) -- (outcome.north);
+\draw[arrow] (rs.south) -- (outcome.north);
+\draw[arrow] (vn.south) -- (outcome.north);
+\end{tikzpicture}
+\caption{CSR governance interpretation of the EV battery take-back use case. Stage-0 choices determine whether the channel coordinates, follows Manufacturer leadership, follows Retailer leadership, or falls back to simultaneous play. The selected governance regime then shapes CSR maturity, consumer trust, demand, and profit allocation.}
+\label{fig:ch3_csr_governance_usecase}
+\end{figure}
+
+The figure highlights why the analytical model begins with governance rather than technology. The same take-back technology can perform differently under different channel structures. Under IN, the firms internalize the full demand benefit of $s$ and choose the strongest CSR maturity. Under MS, the Manufacturer protects upstream pricing power before the Retailer funds maturity. Under RS, the Retailer protects its markup, but the resulting price can weaken demand and reduce the return to $s$. Under VN, neither side secures leadership or coordination, so the channel remains exposed to double marginalization.
+
+The use case also clarifies the role of the Stage-0 game. A coordinated take-back alliance does not appear automatically. It must be selected. Shared standards, joint investment plans, transparent battery tracking, data-sharing agreements, and cost-sharing contracts all make the coordinated action \(C\) easier to choose. Without such devices, each party may prefer to protect its own position first. That can leave the channel with lower CSR maturity even when consumers value responsible recycling.
+
+% ============================================================
+\section{Conclusion}
+\label{sec:ch3_conclusion}
+% ============================================================
+
+This chapter developed a game-theoretic model of CSR-driven Manufacturer--Retailer coordination in a CSR-driven supply chain. The Manufacturer sets a wholesale price, the Retailer sets a markup and CSR maturity, and consumer demand increases with CSR maturity but decreases with the final retail price. The markup formulation is essential: in the decentralized regimes the Retailer's strategic pricing decision is $m$, while the consumer price is the derived outcome $p=w+m$.
+
+The chapter compared four CSR governance regimes: Vertical Nash, Manufacturer Stackelberg, Retailer Stackelberg, and an integrated benchmark. VN produces equal upstream and downstream margins but still suffers from double marginalization. MS gives the Manufacturer a first-mover advantage and makes the wholesale price independent of the CSR parameters $\beta$ and $\gamma$. RS shifts margin downstream but suppresses demand and CSR maturity relative to the integrated benchmark. IN eliminates double marginalization and delivers the highest total profit, demand, and CSR maturity.
+
+The cross-regime comparison revealed two parameter regions. Under moderate CSR pull ($0<x<1$), the retail-price ranking is $p^{RS}>p^{MS}>p^{VN}>p^{IN}$, while CSR maturity and demand follow $IN>VN>MS>RS$. In this region, total channel profit follows $\Pi_T^{IN}>\Pi_T^{VN}>\Pi_T^{MS}>\Pi_T^{RS}$, so VN is the second-best decentralized regime in total-profit terms.
+
+Under high CSR pull ($1<x<2$), the retail-price ranking becomes $p^{IN}>p^{MS}>p^{VN}>p^{RS}$ because the integrated channel invests heavily in CSR maturity and charges a CSR premium. CSR maturity and demand follow $IN>MS>VN>RS$, and total channel profit follows $\Pi_T^{IN}>\Pi_T^{MS}>\Pi_T^{VN}>\Pi_T^{RS}$. Thus, Manufacturer leadership becomes the second-best decentralized structure when consumers strongly value CSR maturity.
+
+The Stage-0 meta-game showed how the CSR governance regime can emerge endogenously. With a small fixed-cost tie-break, the Manufacturer strictly prefers integration to Manufacturer leadership. Under moderate CSR pull, the regime-choice game is a stag hunt with two equilibria, $(C,C)$ and $(L,L)$. Under high CSR pull, the coordinated outcome $(C,C)$ is the unique pure-strategy equilibrium. Without the fixed-cost tie-break, $(L,C)$ can appear only as a weak equilibrium because the Manufacturer is indifferent between IN and MS; with the tie-break, that weak equilibrium disappears.
+
+Overall, the model shows that CSR performance depends not only on technology or regulation, but also on CSR governance inside the channel. Integration is consistently best for total surplus and CSR maturity, but the best decentralized alternative depends on the strength of consumer CSR pull. These findings provide the strategic foundation for Chapter~\ref{chap:model2}, which extends the analysis to a multi-retailer applied network, CSR network location, and cooperative cost sharing.
