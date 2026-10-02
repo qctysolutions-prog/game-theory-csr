@@ -1,0 +1,71 @@
+{
+  "metadata": {
+    "name": "Stylized U.S. product-stewardship network",
+    "purpose": "Reproducible illustration; not an industry-calibrated dataset",
+    "volume_unit": "tons_per_year",
+    "unit_cost_unit": "usd_per_ton",
+    "fixed_cost_unit": "thousand_usd",
+    "reported_cost_unit": "thousand_usd"
+  },
+  "players": ["M", "R1", "R2", "R3", "R4", "R5"],
+  "manufacturer": "M",
+  "retailers": {
+    "R1": {"region": "California / West Coast", "volume": 4200, "collection_cost": 135},
+    "R2": {"region": "Texas / South Central", "volume": 2600, "collection_cost": 120},
+    "R3": {"region": "Michigan / Midwest", "volume": 2200, "collection_cost": 115},
+    "R4": {"region": "Georgia / Southeast", "volume": 1800, "collection_cost": 110},
+    "R5": {"region": "New York--New Jersey / Northeast", "volume": 1600, "collection_cost": 140}
+  },
+  "centers": {
+    "NV": {"capacity": 6500, "fixed_cost": 300, "handling_cost": 35},
+    "TN": {"capacity": 6000, "fixed_cost": 260, "handling_cost": 32},
+    "MI": {"capacity": 5000, "fixed_cost": 230, "handling_cost": 30},
+    "GA": {"capacity": 5000, "fixed_cost": 220, "handling_cost": 28}
+  },
+  "retailer_center_transport": {
+    "R1": {"NV": 45, "TN": 155, "MI": 135, "GA": 170},
+    "R2": {"NV": 85, "TN": 55, "MI": 90, "GA": 75},
+    "R3": {"NV": 125, "TN": 75, "MI": 25, "GA": 70},
+    "R4": {"NV": 150, "TN": 55, "MI": 80, "GA": 20},
+    "R5": {"NV": 170, "TN": 105, "MI": 60, "GA": 95}
+  },
+  "processors": {
+    "H": {
+      "description": "High-standard recovery processor",
+      "capacity": 10000,
+      "fixed_cost": 550,
+      "processing_cost": 410,
+      "recovery_efficiency": 0.90,
+      "base_recovery_value": 330,
+      "requires_manufacturer_platform": true
+    },
+    "L": {
+      "description": "Standard qualified treatment processor",
+      "capacity": 15000,
+      "fixed_cost": 280,
+      "processing_cost": 300,
+      "recovery_efficiency": 0.65,
+      "base_recovery_value": 210,
+      "requires_manufacturer_platform": false
+    }
+  },
+  "center_processor_transport": {
+    "NV": {"H": 40, "L": 55},
+    "TN": {"H": 55, "L": 30},
+    "MI": {"H": 25, "L": 50},
+    "GA": {"H": 60, "L": 25}
+  },
+  "service": {
+    "formal_service_rate": 1.0
+  },
+  "governance_cost": {
+    "manufacturer_platform": 500,
+    "coalition_base": 50,
+    "per_retailer": 25
+  },
+  "allocation": {
+    "manufacturer_responsibility_weight": 0.15,
+    "hybrid_shapley_weight": 0.70,
+    "manufacturer_support_budget": 300
+  }
+}

@@ -1,0 +1,7 @@
+property,violations,comparisons,percent
+Monotonicity,0,665,0.000000
+Subadditivity,0,301,0.000000
+Concavity (submodularity),462,1351,34.196891
+Decreasing marginal cost,466,1266,36.808847
+"Concavity, union uses two processors",220,391,56.265985
+"Concavity, union uses one processor",242,960,25.208333

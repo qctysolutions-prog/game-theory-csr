@@ -1,0 +1,421 @@
+\chapter{Appendix to Chapter 4: Secondary Derivations, Proofs, and Reproducible Computation}
+\label{app:ch4_proofs}
+
+This appendix separates technical detail from the intuitive presentation in
+Chapter~\ref{chap:model2}. It provides proof sketches, the complete
+computational procedure, and the stylized input data used to generate every
+numerical result in the chapter.
+
+\section{Phase I Derivations and Proofs}
+
+\subsection{Feasibility of Stewardship-Network Operation}
+
+Equation~\eqref{eq:con_retailer} requires total flow
+$D(S)=\sum_{i\in I(S)}D_i(S)$ to pass through both the consolidation and
+processor echelons. If opened-center capacity or eligible-processor capacity is
+below $D(S)$, flow conservation makes the model infeasible. Conversely, under
+complete connectivity, the required flow can be distributed across any opened
+centers and eligible processors whose aggregate capacities satisfy
+\eqref{eq:ch4_feasibility_condition}. This proves
+Proposition~\ref{prop:ch4_feasibility}.
+
+\subsection{Value of Additional Processor Access}
+
+Let $e'$ weakly expand processor access relative to $e$. Every solution feasible
+under $e$ remains feasible under $e'$ because no access constraint is tightened.
+The minimum over the larger feasible set cannot exceed the minimum over the
+smaller set. Therefore $c(S;e')\leq c(S;e)$, proving
+Proposition~\ref{prop:ch4_access_value}. The inequality can be an equality when
+the newly available processor is not selected.
+
+\subsection{Average Cost on a Fixed-Capacity Interval}
+
+\begin{proposition}[Average-Cost Behavior Between Capacity Thresholds]
+\label{prop:ch4_average_cost_behavior}
+Suppose coalition volume $Q$ changes over an interval on which the same
+facilities and processors remain active, total fixed cost is $F>0$, and the
+unit net variable cost is $\bar v$. Then
+\begin{equation}
+\label{eq:ch4_average_cost_behavior}
+\mathrm{UC}(Q)=\bar v+\frac{F}{Q},
+\qquad
+\frac{\partial\mathrm{UC}(Q)}{\partial Q}=-\frac{F}{Q^2}<0.
+\end{equation}
+At a capacity or access threshold, a new binary decision may instead create a
+discrete increase or decrease in average cost.
+\end{proposition}
+
+When the opened facilities and unit net cost $\bar v$ remain unchanged, total
+cost is $F+\bar vQ$. Dividing by $Q$ and differentiating gives
+$\mathrm{UC}(Q)=\bar v+F/Q$ and
+$\partial\mathrm{UC}/\partial Q=-F/Q^2<0$. A new binary facility decision
+changes $F$ and can create an upward jump. This proves
+Proposition~\ref{prop:ch4_average_cost_behavior}.
+
+\section{Phase II Derivations and Proofs}
+
+\subsection{Operational Anatomy of a Marginal Contribution}
+
+For a predecessor coalition $T\subseteq N\setminus\{x\}$, player $x$'s
+marginal cost contribution is
+\begin{equation}
+\label{eq:ch4_marginal_cost}
+\Delta_x c(T)=c(T\cup\{x\})-c(T).
+\end{equation}
+For interpretation, this change can be organized as
+\begin{equation}
+\label{eq:ch4_marginal_decomposition}
+\begin{aligned}
+\Delta_x c(T)=&
+\Delta_x C^{flow}(T)
++\Delta_x C^{fixed}(T)
++\Delta_x C^{access}(T)\\
+&+\Delta_x C^{gov}(T)
+-\Delta_x V^{rec}(T).
+\end{aligned}
+\end{equation}
+The five terms represent changes in flow cost, active fixed facilities,
+processor access, platform administration, and recovered-material credit.
+This is an accounting interpretation of two optimized coalition costs, not an
+additional separability assumption imposed on the MILP.
+
+\subsection{Shapley Efficiency}
+
+For any ordering of the players, marginal contributions telescope from
+$c(\emptyset)=0$ to $c(N)$. Averaging the telescoping sum over all player
+orderings leaves the sum unchanged, so
+$\sum_{x\in N}\phi_x(c)=c(N)$. This proves
+Proposition~\ref{prop:ch4_efficiency}.
+
+\subsection{Counterexample to Automatic Individual Rationality}
+
+Consider a two-player cost game with
+$c(\emptyset)=c(\{1\})=c(\{2\})=0$ and $c(\{1,2\})=2$. Symmetry and efficiency
+give $\phi_1(c)=\phi_2(c)=1$, but $1>c(\{1\})=c(\{2\})=0$. Shapley efficiency
+therefore does not imply individual rationality. This proves
+Proposition~\ref{prop:ch4_ir_not_automatic}.
+
+\subsection{Core Stability}
+
+For a cost game, a proper coalition blocks allocation $a$ exactly when its
+assigned payment exceeds what it can achieve alone:
+$\sum_{x\in S}a_x>c(S)$. This is equivalent to
+$\sigma(S;a)<0$. Thus an efficient allocation is unblocked if and only if all
+proper-coalition slacks are nonnegative. This proves
+Proposition~\ref{prop:ch4_core_depends_phase1}.
+
+\subsection{Hybrid Efficiency}
+
+\begin{proposition}[Hybrid Allocation Preserves Budget Balance]
+\label{prop:ch4_hybrid_efficiency}
+If $\sum_{x\in N}p_x=1$, then the hybrid allocation in
+Equation~\eqref{eq:ch4_hybrid_allocation} satisfies
+\begin{equation}
+\label{eq:ch4_hybrid_efficiency}
+\sum_{x\in N}\psi_x(\theta)=c(N)
+\qquad \forall \theta\in[0,1].
+\end{equation}
+\end{proposition}
+
+Summing Equation~\eqref{eq:ch4_hybrid_allocation} over players gives
+\[
+\sum_x\psi_x(\theta)
+=\theta\sum_x\phi_x(c)+(1-\theta)c(N)\sum_xp_x.
+\]
+Shapley efficiency and $\sum_xp_x=1$ reduce the expression to $c(N)$. This
+proves Proposition~\ref{prop:ch4_hybrid_efficiency}.
+
+\subsection{Non-Smooth Allocation Changes}
+
+\begin{proposition}[Sufficient Condition for a Non-Smooth Allocation Change]
+\label{prop:ch4_nonlinear_allocation}
+Suppose a facility-capacity or processor-access threshold changes the optimized
+cost of at least one coalition by a nonzero discrete amount, while the weighted
+marginal-cost changes in the Shapley sums do not cancel exactly for every
+player. Then at least one player's Shapley allocation changes non-smoothly at
+that threshold.
+\end{proposition}
+
+Each Shapley allocation is a weighted linear combination of coalition-cost
+differences. If a threshold creates a nonzero discrete change in at least one
+coalition cost, it changes the relevant marginal contributions. Unless those
+weighted changes cancel for every player, at least one Shapley allocation has a
+non-smooth change. This proves Proposition~\ref{prop:ch4_nonlinear_allocation}
+under its stated non-cancellation condition.
+
+\section{Structural and Comparative-Static Results}
+\label{app:ch4_structural}
+
+Throughout this section $a(S)=\sum_{x\in S}a_x$ for a vector $a\in\mathbb{R}^N$,
+``proper coalition'' means $\emptyset\neq S\subsetneq N$, and $\epsilon^*$ is
+the least-core value of \eqref{eq:ch4_least_core} without the restriction
+$a_x\geq0$.
+
+\subsection{Additive Cost Components}
+
+If $y$ is budget balanced for $c$ and $y(S)\leq c(S)$ for every proper $S$,
+then $y+a$ is budget balanced for $c'=c+a(\cdot)$ and
+$(y+a)(S)=y(S)+a(S)\leq c'(S)$; the converse holds by subtracting $a$. Hence
+the core of $c'$ is the core of $c$ shifted by $a$. The same shift maps every
+feasible pair $(y,\epsilon)$ of the least-core program for $c$ to a feasible
+pair $(y+a,\epsilon)$ for $c'$ with the same $\epsilon$, so
+$\epsilon^*(c')=\epsilon^*(c)$; applied to program
+\eqref{eq:ch4_cost_of_stability} it shows that the Cost of Stability is also
+unchanged. In the Shapley formula \eqref{eq:shapley} every marginal
+contribution of $x$ increases by exactly $a_x$, and the weights sum to one, so
+$\phi_x(c')=\phi_x(c)+a_x$. Therefore
+$\sigma(S;\phi(c'))=c(S)+a(S)-\phi(c)(S)-a(S)=\sigma(S;\phi(c))$.
+
+With a common target $\alpha(S)\equiv\alpha$, the required volume $D_i$ of each
+retailer does not depend on the coalition. Because every ton leaving retailer
+$i$ incurs $c_i^R$, the collection term in \eqref{eq:objective} equals
+$\sum_{i\in I(S)}c_i^RD_i$, which is additive. The Manufacturer's platform cost
+and the per-retailer administration cost are additive by construction. This
+proves Proposition~\ref{prop:ch4_strategic_equivalence}.
+
+\subsection{The Linear Relaxation}
+
+Write $\bar c(S)=\bar C(S)+F^G(S)$, where $\bar C(S)$ is the optimal value of
+the relaxed network program (\eqref{eq:objective}--\eqref{eq:con_domain} with
+$0\leq y_j,z_l\leq1$, excluding the governance term). For a platform-controlled
+processor the bound $z_l\leq1$ is implied by $z_l\leq e_l(S)\leq1$ and can be
+dropped; for a processor whose eligibility is the same for every coalition the
+access row is a constant $z_l\leq e_l$, and when $e_l=1$ it coincides with the
+bound, so one copy can be dropped. The relaxed program for
+every coalition then has the same constraint matrix and differs only in its
+right-hand side $b(S)$, whose entries are of three kinds:
+\begin{enumerate}
+\item service rows \eqref{eq:con_retailer}, with right-hand side
+$D_i\mathbf{1}[i\in S]$, which adds up over retailers;
+\item access rows for platform-controlled processors, with right-hand side
+$\mathbf{1}[M\in S]$, contributed by the Manufacturer;
+\item shared rows---flow balance, capacity-link rows, and access rows of
+processors unavailable to every coalition, all with right-hand side zero; and
+the bounds $y_j\leq1$ and $z_l\leq1$ for processors open to every coalition,
+with right-hand side one.
+\end{enumerate}
+Let $u^*$ be an optimal dual solution of the grand coalition's relaxed program.
+By condition~(d) of Proposition~\ref{prop:ch4_lp_balanced} a primal optimum
+leaves every shared bound slack, so complementary slackness gives $u^*=0$ on
+those rows; rows with right-hand side zero contribute nothing to any dual
+objective. Define
+\begin{equation*}
+\xi_i=D_iu^*_i\quad(i\in I),
+\qquad
+\xi_M=\sum_{l\ \text{platform-controlled}}u^*_l .
+\end{equation*}
+For any coalition $S$, $\xi(S)=b(S)^{\top}u^*$. Since the dual feasible set does
+not depend on $S$, $u^*$ is feasible for the dual of $S$'s program, and weak
+duality gives $\xi(S)\leq\bar C(S)$. Strong duality at the grand coalition
+gives $\xi(N)=\bar C(N)$. Hence $\xi$ lies in the core of $\bar C$; this is the
+linear-production-game argument of \cite{Owen1975}.
+
+For the governance term, condition~(c) writes
+$F^G(S)=f(S)+F_0\mathbf{1}[I(S)\neq\emptyset]$ with member-specific terms $f$
+and a setup cost $F_0\geq0$. The allocation $g_i=F_0/|I|$ for retailers and
+$g_M=0$ gives $g(S)=F_0|I(S)|/|I|\leq F_0\mathbf{1}[I(S)\neq\emptyset]$ with
+equality at $N$, so $g$ is in the core of the setup-cost game. Because the core
+of a sum of games contains the sum of their cores, $\bar x=\xi+f+g$ lies in the
+core of $\bar c$. This proves Proposition~\ref{prop:ch4_lp_balanced}.
+
+\subsection{Indivisibility}
+
+The relaxed program has a larger feasible set than the MILP, so
+$\bar c(S)\leq c(S)$ for every coalition. The allocation $\bar x$ constructed
+above satisfies $\bar x(S)\leq\bar c(S)\leq c(S)$ for every proper $S$ and
+$\bar x(N)=\bar c(N)$. If $c(N)=\bar c(N)$, $\bar x$ is in the core of $c$.
+Otherwise $\bar x$ is feasible in \eqref{eq:ch4_cost_of_stability} with
+$\Delta=c(N)-\bar c(N)$, which bounds $\Delta^*$. This proves
+Proposition~\ref{prop:ch4_indivisibility}.
+
+\subsection{Balanced-Collection Certificate}
+
+The least-core program minimizes $\epsilon$ subject to
+$a(S)-\epsilon\leq c(S)$ for every proper $S$ (multiplier $\lambda_S\geq0$) and
+$a(N)=c(N)$ (multiplier $\mu$, free). Its dual is
+\begin{equation*}
+\max_{\lambda\geq0,\ \mu}\ \mu\,c(N)-\sum_S\lambda_Sc(S)
+\quad\text{s.t.}\quad
+\sum_{S\ni x}\lambda_S=\mu\ \ \forall x\in N,
+\qquad
+\sum_S\lambda_S=1 .
+\end{equation*}
+Summing the first constraint over players gives
+$\sum_S\lambda_S|S|=n\mu$, so $\mu>0$. Setting $\delta_S=\lambda_S/\mu$ yields
+a balanced collection with $\sum_S\delta_S=1/\mu$, and the dual objective
+becomes $\big(c(N)-\sum_S\delta_Sc(S)\big)/\sum_S\delta_S$. Conversely, every
+balanced $\delta$ defines a dual-feasible pair
+$\lambda=\delta/\sum_S\delta_S$, $\mu=1/\sum_S\delta_S$. The primal is feasible
+and the dual is feasible, so strong duality gives \eqref{eq:ch4_certificate}.
+The core is nonempty exactly when $\epsilon^*\leq0$, which proves
+Proposition~\ref{prop:ch4_balanced_certificate}.
+
+\subsection{Envelope Result for Stability}
+
+Let $\Lambda$ be the dual feasible set above; it does not depend on the costs.
+Then $\epsilon^*=E(c)=\max_{(\lambda,\mu)\in\Lambda}\mu c(N)-\sum_S\lambda_Sc(S)$
+is a maximum of linear functions of the cost vector. Where the maximizer is
+unique, $E$ is differentiable with $\partial E/\partial c(N)=\mu$ and
+$\partial E/\partial c(S)=-\lambda_S$ (Danskin's theorem).
+
+For each coalition, $c(S;\theta)$ is the minimum over facility configurations
+of the corresponding flow-program values. Each of these values is continuous in
+$\theta$, so a configuration that is uniquely optimal at $\theta$ remains
+optimal nearby, and $c(S;\theta)$ coincides locally with the value of a single
+linear program. With a unique dual solution, that value is differentiable and
+its derivative is the shadow price of the constraint that contains $\theta$
+(for a capacity $K_l$ with $z_l$ fixed at $\bar z_l$, the right-hand side is
+$K_l\bar z_l$ and the derivative is the capacity shadow price times $\bar z_l$).
+The chain rule gives \eqref{eq:ch4_stability_envelope}, proving
+Proposition~\ref{prop:ch4_stability_envelope}. Proposition~\ref{prop:ch4_shapley_statics}
+follows because \eqref{eq:shapley} is a fixed linear combination of coalition
+costs: differentiating term by term gives $\partial\phi_x/\partial\theta=\phi_x(c')$,
+and the slack derivative follows from \eqref{eq:ch4_core_slack}.
+
+\subsection{Bounds on the Cost of Stability}
+
+Program \eqref{eq:ch4_cost_of_stability} is equivalent to maximizing $a(N)$
+subject to $a(S)\leq c(S)$ for every proper $S$. Its dual minimizes
+$\sum_S\delta_Sc(S)$ over balanced collections, and singletons are balanced, so
+both programs are feasible and
+$\Delta^*=\max\{0,\ \max_{\delta}\,[c(N)-\sum_S\delta_Sc(S)]\}$. By
+Proposition~\ref{prop:ch4_balanced_certificate},
+$c(N)-\sum_S\delta_Sc(S)\leq\epsilon^*\sum_S\delta_S$ for every balanced
+$\delta$. Because $\sum_S\delta_S|S|=n$ and $1\leq|S|\leq n-1$,
+\begin{equation*}
+\frac{n}{n-1}\leq\sum_S\delta_S\leq n .
+\end{equation*}
+If $\epsilon^*>0$, the maximizing collection $\delta^*$ of
+\eqref{eq:ch4_certificate} gives
+$\Delta^*\geq c(N)-\sum_S\delta^*_Sc(S)=\epsilon^*\sum_S\delta^*_S\geq
+\tfrac{n}{n-1}\epsilon^*$, and every $\delta$ gives
+$c(N)-\sum_S\delta_Sc(S)\leq n\epsilon^*$, so $\Delta^*\leq n\epsilon^*$. When
+$\delta^*$ also solves the dual of \eqref{eq:ch4_cost_of_stability}, the first
+inequality holds with equality. If $\epsilon^*\leq0$ every gap is nonpositive
+and $\Delta^*=0$. The integrality-gap bound is
+Proposition~\ref{prop:ch4_indivisibility}. This proves
+Proposition~\ref{prop:ch4_cos_bounds}.
+
+\section{Computational Method}
+
+The reproducible implementation is in \texttt{chapter4\_model/}. It uses
+Python~3.14 and the OR-Tools SCIP interface, with CBC as a fallback. The command
+is
+\begin{verbatim}
+python solve_chapter4.py --data case_data.json `
+    --output generated --solver SCIP
+\end{verbatim}
+
+For each scenario the program performs the following steps:
+\begin{enumerate}
+\item Enumerate all $2^6=64$ coalitions of
+$N=\{M,R_1,R_2,R_3,R_4,R_5\}$.
+\item Build and solve the coalition-specific MILP with service, access, flow,
+and capacity constraints.
+\item Recompute the objective independently from the returned variable values
+and require agreement within $10^{-4}$ thousand dollars.
+\item Compute exact Shapley allocations from all coalition costs and verify
+efficiency and the savings-game identity.
+\item Evaluate all 62 nonempty proper-coalition core constraints.
+\item Solve the least-core LP, followed by the L1 projection in
+Equation~\eqref{eq:ch4_constrained_projection}.
+\item For the structural diagnosis, re-solve all coalitions with the binary
+facility decisions relaxed, solve the dual of the least-core LP to recover the
+balanced-collection certificate (and test that it is unique), and solve the
+Cost-of-Stability LP \eqref{eq:ch4_cost_of_stability}.
+\item For the comparative statics, fix each coalition's optimal facility
+configuration, re-solve the remaining flow LP to obtain shadow prices, and
+compare the prediction of Proposition~\ref{prop:ch4_stability_envelope} with a
+central finite difference of the fully re-solved game.
+\item Repeat the diagnosis over the high-standard processor capacity, the
+formal-service target, and a mean-preserving volume dispersion.
+\item Stop with an error if any exported result contradicts
+Propositions~\ref{prop:ch4_strategic_equivalence}--\ref{prop:ch4_cos_bounds}:
+a relaxed game with an empty core where condition~(d) holds, a Cost of
+Stability outside its bounds, a change in stability when additive costs are
+removed, or an envelope prediction that disagrees with the finite difference.
+\item Export CSV, JSON, LaTeX table fragments, pgfplots data, and a SHA-256
+manifest.
+\end{enumerate}
+The full run, including the diagnosis, takes about two minutes.
+
+Variable costs enter the objective in dollars per ton and are divided by 1,000;
+fixed and reported costs are in thousands of U.S. dollars. The dataset is a
+transparent numerical illustration, not an empirical estimate.
+
+\section{Complete Stylized Input Data}
+
+\begin{table}[htbp]
+\centering
+\caption{Candidate Consolidation-Center Inputs}
+\label{tab:app_ch4_centers}
+\begin{tabular}{lccc}
+\toprule
+Center & Capacity (tons) & Fixed cost (thousand USD) & Handling (USD/ton) \\
+\midrule
+\input{chapter4_model/generated/center_parameter_rows.tex}
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Processor Inputs}
+\label{tab:app_ch4_processors}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrr}
+\toprule
+Processor & Capacity & Fixed cost & Processing & Recovery efficiency & Base recovery value & Access rule \\
+\midrule
+High-standard $H$ & 10,000 & 550 & 410 & 0.90 & 330 & Requires $M\in S$ \\
+Standard $L$ & 15,000 & 280 & 300 & 0.65 & 210 & Available to retailer coalitions \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Retailer-to-Center Transportation Cost (USD/ton)}
+\label{tab:app_ch4_retailer_transport}
+\begin{tabular}{lrrrr}
+\toprule
+ & NV & TN & MI & GA \\
+\midrule
+$R_1$ & 45 & 155 & 135 & 170 \\
+$R_2$ & 85 & 55 & 90 & 75 \\
+$R_3$ & 125 & 75 & 25 & 70 \\
+$R_4$ & 150 & 55 & 80 & 20 \\
+$R_5$ & 170 & 105 & 60 & 95 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Center-to-Processor Transportation Cost (USD/ton)}
+\label{tab:app_ch4_processor_transport}
+\begin{tabular}{lrr}
+\toprule
+ & High-standard $H$ & Standard $L$ \\
+\midrule
+NV & 40 & 55 \\
+TN & 55 & 30 \\
+MI & 25 & 50 \\
+GA & 60 & 25 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The baseline formal-service target is $\alpha(S)=1$ for every coalition with
+retail return volume, so coalitions are compared under the same service
+obligation. The standard processor is available to all such coalitions; the
+high-standard processor requires the Manufacturer's platform. The Manufacturer
+platform costs 500 thousand dollars. For the Manufacturer singleton, this is
+interpreted as the annual outside-option cost of maintaining platform readiness
+and the processor relationship without physical retailer volume. A coalition
+with retailer volume also incurs 50 thousand dollars of setup cost plus 25
+thousand dollars per participating retailer. Processor prices and recovered
+values are fixed by processor type rather than by an abstract capability score.
+Recovery efficiency is used to report recovered output and determine the
+recovered-material credit; the baseline does not impose a minimum recovery-yield
+constraint. The JSON file is the authoritative machine-readable source.

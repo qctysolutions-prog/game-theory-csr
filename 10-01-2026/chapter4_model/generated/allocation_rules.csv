@@ -1,0 +1,6 @@
+rule,manufacturer_share,largest_retailer_share,minimum_core_slack
+Proportional responsibility,1005.84000000,1930.56387097,-505.84000000
+Shapley baseline,440.80833333,2158.50333333,-144.98500000
+Hybrid (theta=0.70),610.31783333,2090.12149462,-182.51620968
+Least-core L1 projection,440.80833333,2132.52499990,-52.87500010
+Manufacturer responsibility shift,500.00000000,2138.10913404,-157.45879488

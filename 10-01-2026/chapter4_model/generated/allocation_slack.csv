@@ -1,0 +1,6 @@
+rule,minimum_core_slack
+Proportional responsibility,-505.84000000000015
+Shapley baseline,-144.9850000000015
+Hybrid (theta=0.70),-182.5162096774202
+Least-core L1 projection,-52.87500010000167
+Manufacturer responsibility shift,-157.45879487878847

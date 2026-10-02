@@ -1,0 +1,256 @@
+{
+  "allocation_rules": {
+    "Hybrid (theta=0.70)": {
+      "allocation": {
+        "M": 610.3178333333333,
+        "R1": 2090.121494623656,
+        "R2": 1282.6837903225805,
+        "R3": 1035.4996559139788,
+        "R4": 844.6281881720433,
+        "R5": 842.3490376344089
+      },
+      "largest_retailer_share": 2090.121494623656,
+      "manufacturer_share": 610.3178333333333,
+      "minimum_core_slack": -182.5162096774202
+    },
+    "Least-core L1 projection": {
+      "allocation": {
+        "M": 440.8083333333333,
+        "R1": 2132.5249998999993,
+        "R2": 1412.3249998999995,
+        "R3": 978.2166669666683,
+        "R4": 852.308332933331,
+        "R5": 889.4166669666693
+      },
+      "largest_retailer_share": 2132.5249998999993,
+      "manufacturer_share": 440.8083333333333,
+      "minimum_core_slack": -52.87500010000167
+    },
+    "Manufacturer responsibility shift": {
+      "allocation": {
+        "M": 500.0,
+        "R1": 2138.1091340361145,
+        "R2": 1307.7412051212127,
+        "R3": 1036.0114134149183,
+        "R4": 843.9682036779626,
+        "R5": 879.7700437497925
+      },
+      "largest_retailer_share": 2138.1091340361145,
+      "manufacturer_share": 500.0,
+      "minimum_core_slack": -157.45879487878847
+    },
+    "Proportional responsibility": {
+      "allocation": {
+        "M": 1005.8400000000001,
+        "R1": 1930.5638709677423,
+        "R2": 1195.1109677419358,
+        "R3": 1011.247741935484,
+        "R4": 827.3845161290324,
+        "R5": 735.4529032258066
+      },
+      "largest_retailer_share": 1930.5638709677423,
+      "manufacturer_share": 1005.8400000000001,
+      "minimum_core_slack": -505.84000000000015
+    },
+    "Shapley baseline": {
+      "allocation": {
+        "M": 440.8083333333333,
+        "R1": 2158.503333333333,
+        "R2": 1320.2149999999997,
+        "R3": 1045.8933333333337,
+        "R4": 852.0183333333338,
+        "R5": 888.1616666666671
+      },
+      "largest_retailer_share": 2158.503333333333,
+      "manufacturer_share": 440.8083333333333,
+      "minimum_core_slack": -144.9850000000015
+    }
+  },
+  "baseline": {
+    "grand_cost": 6705.600000000001,
+    "grand_savings": 1836.999999999999,
+    "grand_savings_percent": 21.503991758949255,
+    "minimum_core_slack": -144.9850000000015,
+    "open_centers": [
+      "NV",
+      "MI",
+      "GA"
+    ],
+    "open_processors": [
+      "H",
+      "L"
+    ],
+    "recovered_output": 10560.000000000002,
+    "required_volume": 12400.0,
+    "service_rate": 1.0,
+    "shapley": {
+      "M": 440.8083333333333,
+      "R1": 2158.503333333333,
+      "R2": 1320.2149999999997,
+      "R3": 1045.8933333333337,
+      "R4": 852.0183333333338,
+      "R5": 888.1616666666671
+    },
+    "standalone_total": 8542.6,
+    "unit_cost": 540.7741935483872
+  },
+  "coalitions_solved_per_scenario": 64,
+  "dataset": {
+    "fixed_cost_unit": "thousand_usd",
+    "name": "Stylized U.S. product-stewardship network",
+    "purpose": "Reproducible illustration; not an industry-calibrated dataset",
+    "reported_cost_unit": "thousand_usd",
+    "unit_cost_unit": "usd_per_ton",
+    "volume_unit": "tons_per_year"
+  },
+  "least_core_epsilon": 52.875000000002004,
+  "manufacturer_support_used": 59.19166666666672,
+  "players": [
+    "M",
+    "R1",
+    "R2",
+    "R3",
+    "R4",
+    "R5"
+  ],
+  "sensitivity": {
+    "baseline": {
+      "grand_cost": 6705.600000000001,
+      "manufacturer_allocation": 440.8083333333333,
+      "minimum_core_slack": -144.9850000000015
+    },
+    "governance_cost_25": {
+      "grand_cost": 6874.350000000001,
+      "manufacturer_allocation": 565.8083333333336,
+      "minimum_core_slack": -142.48500000000058
+    },
+    "recovery_value_20": {
+      "grand_cost": 6046.08,
+      "manufacturer_allocation": 276.47566666666654,
+      "minimum_core_slack": -161.40033333333395
+    },
+    "restricted_processor_access": {
+      "grand_cost": 6772.599999999999,
+      "manufacturer_allocation": 500.0,
+      "minimum_core_slack": 0.0
+    },
+    "service_target_90": {
+      "grand_cost": 6144.96,
+      "manufacturer_allocation": 433.7943333333334,
+      "minimum_core_slack": -180.71616666666705
+    },
+    "transportation_25": {
+      "grand_cost": 6951.1,
+      "manufacturer_allocation": 429.5041666666669,
+      "minimum_core_slack": -116.41916666666748
+    },
+    "volume_20": {
+      "grand_cost": 7648.32,
+      "manufacturer_allocation": 420.0266666666667,
+      "minimum_core_slack": -88.78999999999996
+    }
+  },
+  "structural_diagnosis": {
+    "certificate": {
+      "coalitions": {
+        "M+R1+R2+R3": 0.25000000000000006,
+        "M+R1+R3+R4+R5": 0.25,
+        "M+R2+R3+R4+R5": 0.25,
+        "R1+R2+R4+R5": 0.25
+      },
+      "coverage": {
+        "M": 3,
+        "R1": 3,
+        "R2": 3,
+        "R3": 3,
+        "R4": 3,
+        "R5": 3
+      },
+      "mu": 0.75,
+      "unique": true,
+      "weighted_cost": 6635.099999999999
+    },
+    "cost_of_stability": 70.50000000000182,
+    "envelope_check": [
+      {
+        "agree": true,
+        "configuration_stable": true,
+        "finite_difference_d_epsilon": -0.25,
+        "finite_difference_d_shapley_slack": 0.2,
+        "grand_derivative": 1.0,
+        "label": "Coalition-level governance cost",
+        "parameter": "coalition_base",
+        "predicted_d_epsilon": -0.25,
+        "predicted_d_shapley_slack": 0.20000000000000007,
+        "slack_coalition": "M+R1+R3+R4+R5",
+        "step": 10.0
+      },
+      {
+        "agree": true,
+        "configuration_stable": true,
+        "finite_difference_d_epsilon": -0.013874999999989085,
+        "finite_difference_d_shapley_slack": 0.013233333333337214,
+        "grand_derivative": -0.018500000000000013,
+        "label": "Capacity of processor H",
+        "parameter": "capacity:H",
+        "predicted_d_epsilon": -0.013875000000000009,
+        "predicted_d_shapley_slack": 0.013233333333333347,
+        "slack_coalition": "M+R1+R3+R4+R5",
+        "step": 50.0
+      }
+    ],
+    "epsilon_nonnegative": 52.875000000002004,
+    "epsilon_unrestricted": 52.87500000000178,
+    "integrality_gap": 470.95384615384773,
+    "nonnegativity_binds": false,
+    "owen_condition_points": "77/77",
+    "relaxed_epsilon": -16.666666666666607,
+    "relaxed_epsilon_max_over_all_points": -0.0,
+    "relaxed_grand_cost": 6234.6461538461535,
+    "strategic_equivalence": [
+      {
+        "epsilon_star": 52.875000000000895,
+        "max_slack_change": 1.3642420526593924e-12,
+        "variant": "Retailer collection cost set to zero"
+      },
+      {
+        "epsilon_star": 52.87500000000205,
+        "max_slack_change": 1.3642420526593924e-12,
+        "variant": "Platform and per-retailer governance cost set to zero"
+      }
+    ],
+    "structural_properties": {
+      "concave": {
+        "comparisons": 1351,
+        "violations": 462
+      },
+      "concave_one_processor": {
+        "comparisons": 960,
+        "violations": 242
+      },
+      "concave_two_processor": {
+        "comparisons": 391,
+        "violations": 220
+      },
+      "marginal": {
+        "comparisons": 1266,
+        "violations": 466
+      },
+      "monotone": {
+        "comparisons": 665,
+        "violations": 0
+      },
+      "subadditive": {
+        "comparisons": 301,
+        "violations": 0
+      }
+    },
+    "worst_marginal_violation": {
+      "early": 1007.7999999999993,
+      "larger": "M+R1+R3+R4+R5",
+      "late": 1465.2000000000016,
+      "player": "R2",
+      "smaller": "M+R1+R3"
+    }
+  }
+}
